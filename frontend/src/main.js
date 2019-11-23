@@ -18,6 +18,8 @@ Vue.prototype.putRequest = putRequest;
 Vue.prototype.deleteRequest = deleteRequest;
 
 import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
+
 
 Vue.use(ElementUI);
 
