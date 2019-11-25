@@ -18,7 +18,7 @@ insert into `value`(`id`, `name`, `explanation`)
 values (2, '不设边界', 'No boundaries');
 
 insert into `value`(`id`, `name`, `explanation`)
-values (3, 'talk is cheap show me the code', 'talk is cheap show me the code');
+values (3, 'talk is cheap', 'show me the code');
 
 
 
