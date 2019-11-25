@@ -57,6 +57,33 @@ create table `enterprise_information_change`
 );
 
 
+drop table if exists `trademark`;
+create table `trademark`
+(
+    `enterprise_id`       int,
+    `applicant`           text,
+    `trademark_address`   text,
+    `trademark_name`      text,
+    `registration_number` text,
+    `classification`      text,
+    `trademark_status`    text,
+    `trademark_process`   text,
+    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`)
+);
+
+drop table if exists `enterprise_main_staff`;
+create table `enterprise_main_staff`
+(
+    `enterprise_id`            int,
+    `enterprise_name`          text,
+    `staff_name`               text,
+    `owning_enterprise_number` int,
+    `position`                 text,
+    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`)
+);
+
+
+
 load data infile '/Users/albert/DB/project/dataset/企业基础信息.csv'
     into table dbserver.enterprise
     fields terminated by ','
@@ -66,6 +93,20 @@ load data infile '/Users/albert/DB/project/dataset/企业基础信息.csv'
 
 load data infile '/Users/albert/DB/project/dataset/企业变更信息.csv'
     into table dbserver.enterprise_information_change
+    fields terminated by ','
+    enclosed by '"'
+    lines terminated by '\r\n' ignore 1 lines;
+
+
+load data infile '/Users/albert/DB/project/dataset/商标注册信息_更新.csv'
+    into table dbserver.trademark
+    fields terminated by ','
+    enclosed by '"'
+    lines terminated by '\r\n' ignore 1 lines;
+
+
+load data infile '/Users/albert/DB/project/dataset/主要人员信息.csv'
+    into table dbserver.enterprise_main_staff
     fields terminated by ','
     enclosed by '"'
     lines terminated by '\r\n' ignore 1 lines;
