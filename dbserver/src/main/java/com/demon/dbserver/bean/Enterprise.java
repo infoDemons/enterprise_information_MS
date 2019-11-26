@@ -3,6 +3,7 @@ package com.demon.dbserver.bean;
 
 /**
  * 企业基本信息实体类
+ * @author  lixinyang
  */
 public class Enterprise {
     private int enterpriseId;
