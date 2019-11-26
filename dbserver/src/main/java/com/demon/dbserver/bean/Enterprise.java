@@ -6,6 +6,7 @@ package com.demon.dbserver.bean;
  * @author  lixinyang
  */
 public class Enterprise {
+    
     private int enterpriseId;
     private String unifiedSocialCreditIdentifier;
     private String enterpriseName;
