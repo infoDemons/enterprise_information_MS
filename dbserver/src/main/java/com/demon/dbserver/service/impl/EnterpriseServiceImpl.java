@@ -6,6 +6,8 @@ import com.demon.dbserver.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
@@ -15,8 +17,11 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     public Enterprise getEnterpriseById(Integer id) {
-        Enterprise enterprise = enterpriseDao.getEnterpriseById(id);
-        System.out.println(enterprise.adjust());
-        return enterprise;
+        return enterpriseDao.getEnterpriseById(id);
+    }
+
+    @Override
+    public List<Enterprise> getEnterprisesByPage(Integer id) {
+        return enterpriseDao.getEnterprisesByPage(id);
     }
 }
