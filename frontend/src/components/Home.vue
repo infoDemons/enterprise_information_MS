@@ -1,7 +1,7 @@
 <template>
     <el-container class="root_container">
         <el-header>
-            <div class="home_title">全国企业信息管理系统</div>
+            <div class="home_title">日出东方 全国企业信息管理系统</div>
         </el-header>
         <el-container>
             <el-aside width="220px">
@@ -11,6 +11,9 @@
                             class="el-menu-vertical-demo" style="background-color: #ececec; margin-top: 5px" router>
                         <el-menu-item @click="pushRouter('/home/value')">
                             <span slot="title">价值观管理</span>
+                        </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/enterprise_search')">
+                            <span slot="title">企业查询</span>
                         </el-menu-item>
                     </el-menu>
                 </div>
