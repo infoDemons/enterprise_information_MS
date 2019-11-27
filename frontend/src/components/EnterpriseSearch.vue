@@ -43,10 +43,10 @@
         <el-dialog title="企业详情" :visible.sync="dialogFormVisible">
             <el-form :model="form">
                 <el-form-item label="企业id:" :label-width="formLabelWidth">
-                    <el-input v-model="form.id" autocomplete="off"></el-input>
+                    <el-input v-model="form.enterpriseId" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="企业名称:" :label-width="formLabelWidth">
-                    <el-input v-model="form.name" autocomplete="off"></el-input>
+                    <el-input v-model="form.enterpriseName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="注册资本:" :label-width="formLabelWidth">
                     <el-input v-model="form.registeredCapital" autocomplete="off"></el-input>
@@ -79,8 +79,8 @@
                 enterprises: [],
                 dialogFormVisible: false,
                 form: {
-                    id: 0,
-                    name: '',
+                    enterpriseId: 0,
+                    enterpriseName: '',
                     explanation: '',
                     registeredCapital: '',
                     paidInCapital: '',
@@ -99,13 +99,19 @@
                 let _this = this;
                 this.getRequest("/enterprise/name/" + _this.enterpriseToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
-                        _this.enterprises = resp.data;
+                        if (resp.data.length < 999) {
+                            _this.enterprises = resp.data;
+                        } else {
+                            _this.enterprises = [];
+                            _this.$message({type: 'error', message: '搜索目标过于泛化 请尝试更精确的搜索'});
+                        }
+
                     }
                 });
             },
             itemClick(row) {
-                this.form.id = row.enterpriseId;
-                this.form.name = row.enterpriseName;
+                this.form.enterpriseId = row.enterpriseId;
+                this.form.enterpriseName = row.enterpriseName;
                 this.form.registeredCapital = row.registeredCapital;
                 this.form.paidInCapital = row.paidInCapital;
                 this.form.industry = row.industry;
