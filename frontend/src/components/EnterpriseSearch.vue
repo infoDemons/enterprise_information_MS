@@ -24,9 +24,11 @@
                 </el-table-column>
 
                 <el-table-column
-                        prop="enterpriseName"
                         label="企业名称"
                         align="left">
+                    <template slot-scope="scope"><span style="color: #409eff;cursor: pointer"
+                                                       @click="itemClick(scope.row)">{{ scope.row.enterpriseName}}</span>
+                    </template>
                 </el-table-column>
 
                 <el-table-column
@@ -35,23 +37,35 @@
                         align="left">
                 </el-table-column>
 
-
             </el-table>
         </el-main>
 
-        <el-dialog title="编辑价值观信息" :visible.sync="dialogFormVisible">
+        <el-dialog title="企业详情" :visible.sync="dialogFormVisible">
             <el-form :model="form">
-                <el-form-item label="请输入新名称:" :label-width="formLabelWidth">
+                <el-form-item label="企业id:" :label-width="formLabelWidth">
+                    <el-input v-model="form.id" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="企业名称:" :label-width="formLabelWidth">
                     <el-input v-model="form.name" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="请输入新描述:" :label-width="formLabelWidth">
-                    <el-input v-model="form.explanation" autocomplete="off"></el-input>
+                <el-form-item label="注册资本:" :label-width="formLabelWidth">
+                    <el-input v-model="form.registeredCapital" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="已缴资本:" :label-width="formLabelWidth">
+                    <el-input v-model="form.paidInCapital" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="所在行业:" :label-width="formLabelWidth">
+                    <el-input v-model="form.industry" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="法定代表人:" :label-width="formLabelWidth">
+                    <el-input v-model="form.legalRepresentative" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="经营范围:" :label-width="formLabelWidth">
+                    <el-input v-model="form.businessScope" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取消</el-button>
-                <el-button type="primary" @click="doEdit()">确定
-                </el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">确定</el-button>
             </div>
         </el-dialog>
     </el-container>
@@ -68,6 +82,11 @@
                     id: 0,
                     name: '',
                     explanation: '',
+                    registeredCapital: '',
+                    paidInCapital: '',
+                    industry: '',
+                    businessScope: '',
+                    legalRepresentative: '',
                 },
                 formLabelWidth: '120px',
                 enterpriseToSearch: {
@@ -83,6 +102,16 @@
                         _this.enterprises = resp.data;
                     }
                 });
+            },
+            itemClick(row) {
+                this.form.id = row.enterpriseId;
+                this.form.name = row.enterpriseName;
+                this.form.registeredCapital = row.registeredCapital;
+                this.form.paidInCapital = row.paidInCapital;
+                this.form.industry = row.industry;
+                this.form.businessScope = row.businessScope;
+                this.form.legalRepresentative = row.legalRepresentative;
+                this.dialogFormVisible = true;
             },
         },
     }
