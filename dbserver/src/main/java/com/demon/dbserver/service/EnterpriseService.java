@@ -8,5 +8,9 @@ public interface EnterpriseService {
 
     Enterprise getEnterpriseById(Integer id);
 
+    List<Enterprise> getEnterpriseByName(String name);
+
     List<Enterprise> getEnterprisesByPage(Integer id);
+
+    List<Enterprise> getAllEnterprises();
 }

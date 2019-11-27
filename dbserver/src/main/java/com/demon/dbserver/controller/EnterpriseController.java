@@ -17,13 +17,23 @@ public class EnterpriseController {
     @Autowired
     private EnterpriseService enterpriseService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Enterprise getEnterpriseById(@PathVariable Integer id) {
         return enterpriseService.getEnterpriseById(id);
+    }
+
+    @GetMapping("/name/{name}")
+    public List<Enterprise> getEnterpriseByName(@PathVariable String name) {
+        return enterpriseService.getEnterpriseByName(name);
     }
 
     @GetMapping("/page/{num}")
     public List<Enterprise> getEnterprisesByPage(@PathVariable Integer num) {
         return enterpriseService.getEnterprisesByPage(num);
+    }
+
+    @GetMapping("/all")
+    public List<Enterprise> getAllEnterprises() {
+        return enterpriseService.getAllEnterprises();
     }
 }
