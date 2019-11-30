@@ -7,6 +7,7 @@
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">精确搜索</el-button>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_fuzzy">模糊搜索</el-button>
+            <el-button type="primary" size="medium" style="margin-left: 15px" >高级搜索</el-button>
         </el-header>
 
         <el-main class="with_shadow">
@@ -97,6 +98,10 @@
         },
         methods: {
             search_direct() {
+                if (this.enterpriseToSearch.name === '') {
+                    this.$message({type: 'error', message: '请先输入'});
+                    return;
+                }
                 let _this = this;
                 this.getRequest("/enterprise/name/" + _this.enterpriseToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
@@ -114,6 +119,10 @@
                 });
             },
             search_fuzzy() {
+                if (this.enterpriseToSearch.name === '') {
+                    this.$message({type: 'error', message: '请先输入'});
+                    return;
+                }
                 let _this = this;
                 this.getRequest("/enterprise/name/es/" + _this.enterpriseToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {

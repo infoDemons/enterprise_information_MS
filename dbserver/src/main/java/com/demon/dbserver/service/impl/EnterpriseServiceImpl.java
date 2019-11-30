@@ -90,7 +90,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     private List<Integer> mapIds(List<Enterprise> enterprises) {
         return enterprises.stream()
-                .map(enterprise -> enterprise.getEnterpriseId())
+                .map(Enterprise::getEnterpriseId)
                 .collect(Collectors.toList());
     }
 
