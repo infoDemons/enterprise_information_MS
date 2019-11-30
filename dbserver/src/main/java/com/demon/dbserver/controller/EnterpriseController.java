@@ -36,4 +36,9 @@ public class EnterpriseController {
     public List<Enterprise> getAllEnterprises() {
         return enterpriseService.getAllEnterprises();
     }
+
+    @GetMapping("/name/es/{name}")
+    public List<Enterprise> getEnterpriseByNameLike(@PathVariable String name) {
+        return enterpriseService.getEnterpriseByNameLike(name);
+    }
 }

@@ -2,11 +2,11 @@ package com.demon.dbserver.service.impl;
 
 import com.demon.dbserver.bean.Enterprise;
 import com.demon.dbserver.dao.EnterpriseDao;
+import com.demon.dbserver.es.EnterpriseBriefRepository;
 import com.demon.dbserver.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -22,6 +22,9 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     @Autowired
     private EnterpriseDao enterpriseDao;
 
+    @Autowired
+    private EnterpriseBriefRepository enterpriseBriefRepository;
+
     @Override
     public Enterprise getEnterpriseById(Integer id) {
         updateEnterprisePopularity(id);
@@ -29,10 +32,28 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
+    public List<Enterprise> getEnterpriseByIds(List<Integer> ids) {
+        updateEnterprisePopularity(ids);
+        return enterpriseDao.getEnterpriseByIds(ids);
+    }
+
+
+    @Override
     public List<Enterprise> getEnterpriseByName(String name) {
         List<Enterprise> res = enterpriseDao.getEnterpriseByName(name);
         updateEnterprisePopularity(mapIds(res));
         return res;
+    }
+
+    @Override
+    public List<Enterprise> getEnterpriseByNameLike(String name) {
+        List<Integer> enterpriseNameLikeIds = enterpriseBriefRepository
+                .findByEnterpriseNameLike(name)
+                .stream()
+                .map(enterpriseBrief -> enterpriseBrief.getId())
+                .collect(Collectors.toList());
+        updateEnterprisePopularity(enterpriseNameLikeIds);
+        return enterpriseDao.getEnterpriseByIds(enterpriseNameLikeIds);
     }
 
     @Override

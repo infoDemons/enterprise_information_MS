@@ -98,6 +98,12 @@
             <version>5.5.1</version>
         </dependency>
 
+        <!--elasticsearch依赖 用于实现模糊搜索 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

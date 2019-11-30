@@ -2,11 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.demon.dbserver.dao.EnterpriseDao">
 
-<!--    <select id="getEnterpriseById" resultType="com.demon.dbserver.bean.Enterprise">-->
-<!--        select *-->
-<!--        from enterprise-->
-<!--        where enterprise_id = #{id}-->
-<!--    </select>-->
+    <select id="getEnterpriseByIds" resultType="com.demon.dbserver.bean.Enterprise">
+        select *
+        from enterprise
+        where enterprise_id in
+        <foreach item="item" index="index" collection="list" open=" (" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 
     <update id="updateEnterprisePopularityByIds">
         update enterprise

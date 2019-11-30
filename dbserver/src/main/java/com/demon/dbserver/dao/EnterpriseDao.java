@@ -14,6 +14,8 @@ public interface EnterpriseDao {
     @Select("select * from enterprise where enterprise_id = #{id}")
     Enterprise getEnterpriseById(Integer id);
 
+    List<Enterprise> getEnterpriseByIds(List<Integer> ids);
+
     @Select("select * from enterprise where enterprise_name like '%${name}%'")
     List<Enterprise> getEnterpriseByName(@Param("name") String name);
 

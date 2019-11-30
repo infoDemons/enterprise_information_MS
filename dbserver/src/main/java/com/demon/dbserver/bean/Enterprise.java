@@ -3,10 +3,11 @@ package com.demon.dbserver.bean;
 
 /**
  * 企业基本信息实体类
- * @author  lixinyang
+ *
+ * @author lixinyang
  */
 public class Enterprise {
-    
+
     private int enterpriseId;
     private String unifiedSocialCreditIdentifier;
     private String enterpriseName;
@@ -142,12 +143,6 @@ public class Enterprise {
 
     public void setBusinessStatus(String businessStatus) {
         this.businessStatus = businessStatus;
-    }
-
-    public boolean adjust() {
-        String oldIndustry = industry;
-        industry = industry.replace("\n", "");
-        return !oldIndustry.equals(industry);
     }
 
     public int getPopularity() {
