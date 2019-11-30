@@ -6,17 +6,27 @@ import com.demon.dbserver.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
+
+    // 耗时操作使用线程池在子线程中完成
+    private Executor executor = Executors.newSingleThreadExecutor();
 
     @Autowired
     private EnterpriseDao enterpriseDao;
 
     @Override
     public Enterprise getEnterpriseById(Integer id) {
+        List<Integer> list = new ArrayList<>();
+        list.add(id);
+        updateEnterprisePopularity(list);
         return enterpriseDao.getEnterpriseById(id);
     }
 
@@ -34,10 +44,38 @@ public class EnterpriseServiceImpl implements EnterpriseService {
      * 一次返回所有企业的数据
      * 测试使用
      * 日常不要调用
+     *
      * @return 所有企业信息
      */
     @Override
     public List<Enterprise> getAllEnterprises() {
         return enterpriseDao.getAllEnterprises();
+    }
+
+    private List<Integer> filterIds(List<Enterprise> enterprises) {
+        return enterprises.stream()
+                .map(enterprise -> enterprise.getEnterpriseId())
+                .collect(Collectors.toList());
+    }
+
+    private void updateEnterprisePopularity(List<Integer> ids) {
+        if (ids.isEmpty()) {
+            return;
+        }
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                enterpriseDao.updateEnterprisePopularityByIds(ids);
+            }
+        });
+    }
+
+    private void updateEnterprisePopularity(Integer id) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                enterpriseDao.updateEnterprisePopularityById(id);
+            }
+        });
     }
 }

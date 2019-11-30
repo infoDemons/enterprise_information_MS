@@ -4,6 +4,7 @@ import com.demon.dbserver.bean.Enterprise;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -21,4 +22,9 @@ public interface EnterpriseDao {
 
     @Select("select * from enterprise")
     List<Enterprise> getAllEnterprises();
+
+    @Update("update enterprise set popularity=popularity+1 where enterprise_id = #{id}")
+    void updateEnterprisePopularityById(@Param("id") Integer id);
+
+    void updateEnterprisePopularityByIds(List<Integer> ids);
 }
