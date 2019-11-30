@@ -24,20 +24,22 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     public Enterprise getEnterpriseById(Integer id) {
-        List<Integer> list = new ArrayList<>();
-        list.add(id);
-        updateEnterprisePopularity(list);
+        updateEnterprisePopularity(id);
         return enterpriseDao.getEnterpriseById(id);
     }
 
     @Override
     public List<Enterprise> getEnterpriseByName(String name) {
-        return enterpriseDao.getEnterpriseByName(name);
+        List<Enterprise> res = enterpriseDao.getEnterpriseByName(name);
+        updateEnterprisePopularity(mapIds(res));
+        return res;
     }
 
     @Override
-    public List<Enterprise> getEnterprisesByPage(Integer id) {
-        return enterpriseDao.getEnterprisesByPage(id);
+    public List<Enterprise> getEnterprisesByPage(Integer num) {
+        List<Enterprise> res = enterpriseDao.getEnterprisesByPage(num);
+        updateEnterprisePopularity(mapIds(res));
+        return res;
     }
 
     /**
@@ -52,7 +54,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         return enterpriseDao.getAllEnterprises();
     }
 
-    private List<Integer> filterIds(List<Enterprise> enterprises) {
+    private List<Integer> mapIds(List<Enterprise> enterprises) {
         return enterprises.stream()
                 .map(enterprise -> enterprise.getEnterpriseId())
                 .collect(Collectors.toList());
