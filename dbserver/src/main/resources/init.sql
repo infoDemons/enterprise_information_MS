@@ -39,8 +39,11 @@ create table `enterprise`
     `form_of_business_enterprise`      text,
     `business_registration_number`     text,
     `registration_authority`           text,
-    `business_status`                  text
+    `business_status`                  text,
+    `popularity`                       int default 0
 );
+
+create index `enterprise_index` on `enterprise` (`enterprise_name`(100), `industry`(100), `popularity`);
 
 
 drop table if exists `enterprise_information_change`;
@@ -88,7 +91,22 @@ load data infile '/Users/albert/DB/project/dataset/企业基础信息.csv'
     into table dbserver.enterprise
     fields terminated by ','
     enclosed by '"'
-    lines terminated by '\r\n' ignore 1 lines;
+    lines terminated by '\r\n' ignore 1 lines
+    (`enterprise_id`,
+     `unified_social_credit_identifier`,
+     `enterprise_name`,
+     `registered_capital`,
+     `paid_in_capital`,
+     `business_scope`,
+     `legal_representative`,
+     `industry`,
+     `telephone_number`,
+     `email`,
+     `registered_address`,
+     `form_of_business_enterprise`,
+     `business_registration_number`,
+     `registration_authority`,
+     `business_status`);
 
 
 load data infile '/Users/albert/DB/project/dataset/企业变更信息.csv'

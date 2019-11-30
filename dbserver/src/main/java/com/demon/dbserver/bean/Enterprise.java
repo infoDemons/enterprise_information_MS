@@ -22,6 +22,7 @@ public class Enterprise {
     private String businessRegistrationNumber;
     private String registrationAuthority;
     private String businessStatus;
+    private int popularity;
 
     public int getEnterpriseId() {
         return enterpriseId;
@@ -147,5 +148,13 @@ public class Enterprise {
         String oldIndustry = industry;
         industry = industry.replace("\n", "");
         return !oldIndustry.equals(industry);
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
     }
 }
