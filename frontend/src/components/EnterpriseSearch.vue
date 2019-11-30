@@ -5,7 +5,8 @@
                     placeholder="请输入要搜索的公司名称"
                     v-model="enterpriseToSearch.name" style="width: 200px; margin-right: 15px">
             </el-input>
-            <el-button type="info" size="medium" style="margin-left: 15px" @click="search">搜索公司</el-button>
+            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">精确搜索</el-button>
+            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_fuzzy">模糊搜索</el-button>
         </el-header>
 
         <el-main class="with_shadow">
@@ -95,7 +96,7 @@
             }
         },
         methods: {
-            search() {
+            search_direct() {
                 let _this = this;
                 this.getRequest("/enterprise/name/" + _this.enterpriseToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
@@ -103,6 +104,23 @@
                             _this.enterprises = [];
                             _this.$message({type: 'error', message: '没有结果'});
                         } else if (resp.data.length < 999) {
+                            _this.enterprises = resp.data;
+                        } else {
+                            _this.enterprises = [];
+                            _this.$message({type: 'error', message: '搜索目标过于泛化 请尝试更精确的搜索'});
+                        }
+
+                    }
+                });
+            },
+            search_fuzzy() {
+                let _this = this;
+                this.getRequest("/enterprise/name/es/" + _this.enterpriseToSearch.name).then(resp => {
+                    if (resp && resp.status === 200) {
+                        if (resp.data.length === 0) {
+                            _this.enterprises = [];
+                            _this.$message({type: 'error', message: '没有结果'});
+                        } else if (resp.data.length < 1999) {
                             _this.enterprises = resp.data;
                         } else {
                             _this.enterprises = [];

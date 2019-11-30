@@ -16,7 +16,7 @@ public interface EnterpriseDao {
 
     List<Enterprise> getEnterpriseByIds(List<Integer> ids);
 
-    @Select("select * from enterprise where enterprise_name like '%${name}%'")
+    @Select("select * from enterprise where enterprise_name like '%${name}%' limit 1000")
     List<Enterprise> getEnterpriseByName(@Param("name") String name);
 
     @Select("select * from enterprise limit #{num}, 10")

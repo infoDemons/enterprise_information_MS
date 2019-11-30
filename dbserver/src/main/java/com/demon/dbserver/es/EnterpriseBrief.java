@@ -12,7 +12,6 @@ public class EnterpriseBrief implements Serializable {
     private String enterpriseName;
 
     public EnterpriseBrief() {
-
     }
 
     public EnterpriseBrief(Integer id, String enterpriseName) {

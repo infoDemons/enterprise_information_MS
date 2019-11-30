@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface EnterpriseBriefRepository extends ElasticsearchRepository<EnterpriseBrief, Integer> {
 
+    List<EnterpriseBrief> findByEnterpriseNameIsContaining(String enterpriseName);
+
     List<EnterpriseBrief> findByEnterpriseNameLike(String enterpriseName);
 }
