@@ -99,7 +99,10 @@
                 let _this = this;
                 this.getRequest("/enterprise/name/" + _this.enterpriseToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
-                        if (resp.data.length < 999) {
+                        if (resp.data.length === 0) {
+                            _this.enterprises = [];
+                            _this.$message({type: 'error', message: '没有结果'});
+                        } else if (resp.data.length < 999) {
                             _this.enterprises = resp.data;
                         } else {
                             _this.enterprises = [];
