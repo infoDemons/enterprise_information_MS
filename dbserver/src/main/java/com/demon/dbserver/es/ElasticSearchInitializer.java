@@ -1,17 +1,14 @@
 package com.demon.dbserver.es;
 
-import com.demon.dbserver.bean.Enterprise;
 import com.demon.dbserver.dao.EnterpriseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 
 @Component
-public class ElasticSearchIniter implements ApplicationRunner {
+public class ElasticSearchInitializer implements ApplicationRunner {
 
     @Autowired
     private EnterpriseDao enterpriseDao;
