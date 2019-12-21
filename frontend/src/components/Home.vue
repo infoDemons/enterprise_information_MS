@@ -15,6 +15,9 @@
                         <el-menu-item @click="pushRouter('/home/enterprise_search')">
                             <span slot="title">企业查询</span>
                         </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/staff_search')">
+                            <span slot="title">人员查询</span>
+                        </el-menu-item>
                     </el-menu>
                 </div>
             </el-aside>
