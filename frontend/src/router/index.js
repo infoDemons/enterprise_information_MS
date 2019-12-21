@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Value from '@/components/Value'
 import Home from '@/components/Home'
 import EnterpriseSearch from '@/components/EnterpriseSearch'
-import Staff from '@/components/Staff'
+import StaffSearch from '@/components/StaffSearch'
 
 Vue.use(Router);
 
@@ -41,7 +41,7 @@ export default new Router({
                 {
                     path: 'staff_search',
                     name: '搜索人员',
-                    component: Staff,
+                    component: StaffSearch,
                     meta: {
                         keepAlive: true
                     }

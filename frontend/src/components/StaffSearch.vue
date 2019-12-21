@@ -19,14 +19,14 @@
 
                 <el-table-column
                         prop="enterpriseId"
-                        label="企业id"
+                        label="相关企业id"
                         width="100"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="enterpriseName"
-                        label="企业名称"
+                        label="相关企业名称"
                         align="left">
                 </el-table-column>
 
@@ -55,7 +55,7 @@
 
 <script>
     export default {
-        name: "Staff",
+        name: "StaffSearch",
         data() {
             return {
                 staff: [],
@@ -103,7 +103,6 @@
                             _this.staff = [];
                             _this.$message({type: 'error', message: '搜索目标过于泛化 请尝试更精确的搜索'});
                         }
-
                     }
                 });
             },
