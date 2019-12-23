@@ -20,36 +20,41 @@
                 <el-table-column
                         prop="enterpriseId"
                         label="相关企业id"
-                        width="100"
+                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="enterpriseName"
                         label="相关企业名称"
+                        width="350"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="staffName"
                         label="姓名"
+                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="owningEnterpriseNumber"
                         label="拥有公司数目"
+                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="position"
                         label="职位"
+                        width="300"
                         align="left">
                 </el-table-column>
 
             </el-table>
         </el-main>
+
     </el-container>
 </template>
 
@@ -60,8 +65,8 @@
             return {
                 staff: [],
                 staffToSearch: {
-                    name: ''
-                }
+                    name: '',
+                },
             }
         },
         methods: {
@@ -70,6 +75,7 @@
                     this.$message({type: 'error', message: '请先输入'});
                     return;
                 }
+                this.staffToSearch.by_name = true;
                 let _this = this;
                 this.getRequest("/staff/name/" + _this.staffToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
@@ -91,6 +97,7 @@
                     this.$message({type: 'error', message: '请先输入'});
                     return;
                 }
+                this.staffToSearch.by_name = false;
                 let _this = this;
                 this.getRequest("/staff/enterprise/" + _this.staffToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
