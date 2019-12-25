@@ -49,13 +49,14 @@ create index `enterprise_index` on `enterprise` (`enterprise_name`(100), `indust
 drop table if exists `enterprise_information_change`;
 create table `enterprise_information_change`
 (
-    `enterprise_id`           int,
-    `enterprise_name`         text,
-    `information_change_date` text,
-    `information_change_type` text,
-    `information_before`      text,
-    `information_after`       text,
-    `create_date`             text,
+    `enterprise_information_change_id` int primary key not null auto_increment,
+    `enterprise_id`                    int,
+    `enterprise_name`                  text,
+    `information_change_date`          text,
+    `information_change_type`          text,
+    `information_before`               text,
+    `information_after`                text,
+    `create_date`                      text,
     foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`)
 );
 
@@ -63,6 +64,7 @@ create table `enterprise_information_change`
 drop table if exists `trademark`;
 create table `trademark`
 (
+    `trademark_id`        int primary key not null auto_increment,
     `enterprise_id`       int,
     `applicant`           text,
     `trademark_address`   text,
@@ -114,25 +116,41 @@ load data infile '/Users/albert/DB/project/dataset/企业变更信息.csv'
     into table dbserver.enterprise_information_change
     fields terminated by ','
     enclosed by '"'
-    lines terminated by '\r\n' ignore 1 lines;
+    lines terminated by '\r\n' ignore 1 lines
+    (`enterprise_id`,
+     `enterprise_name`,
+     `information_change_date`,
+     `information_change_type`,
+     `information_before`,
+     `information_after`,
+     `create_date`);
 
 
 load data infile '/Users/albert/DB/project/dataset/商标注册信息_更新.csv'
     into table dbserver.trademark
     fields terminated by ','
     enclosed by '"'
-    lines terminated by '\r\n' ignore 1 lines;
+    lines terminated by '\r\n' ignore 1 lines
+    (`enterprise_id`,
+     `applicant`,
+     `trademark_address`,
+     `trademark_name`,
+     `registration_number`,
+     `classification`,
+     `trademark_status`,
+     `trademark_process`);
 
 
 load data infile '/Users/albert/DB/project/dataset/主要人员信息.csv'
     into table dbserver.enterprise_main_staff
     fields terminated by ','
     enclosed by '"'
-    lines terminated by '\r\n' ignore 1 lines (`enterprise_id`,
-                                               `enterprise_name`,
-                                               `staff_name`,
-                                               `owning_enterprise_number`,
-                                               `position`);
+    lines terminated by '\r\n' ignore 1 lines
+    (`enterprise_id`,
+     `enterprise_name`,
+     `staff_name`,
+     `owning_enterprise_number`,
+     `position`);
 
 
 drop table if exists `user`;
