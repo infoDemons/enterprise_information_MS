@@ -6,7 +6,8 @@
                     v-model="staffToSearch.name" style="width: 350px; margin-right: 15px">
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">按人名搜</el-button>
-            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_enterprise">按企业搜</el-button>
+            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_enterprise">按企业搜
+            </el-button>
         </el-header>
 
         <el-main class="with_shadow">
@@ -18,30 +19,28 @@
                     max-height="410">
 
                 <el-table-column
-                        prop="enterpriseId"
-                        label="相关企业id"
-                        width="130"
+                        prop="staffId"
+                        label="人员id"
+                        width="150"
+                        align="left">
+                </el-table-column>
+
+                <el-table-column
+                        prop="staffName"
+                        label="人员姓名"
+                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="enterpriseName"
                         label="相关企业名称"
-                        width="300"
-                        align="left">
-                </el-table-column>
-
-                <el-table-column
-                        prop="staffName"
-                        label="姓名"
-                        width="130"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="owningEnterpriseNumber"
                         label="拥有公司数目"
-                        width="130"
                         align="left">
                 </el-table-column>
 
@@ -72,20 +71,20 @@
 
         <el-dialog title="修改信息" :visible.sync="dialogModifyVisible">
             <el-form>
-                <el-form-item label="相关企业信息不可修改" ></el-form-item>
-                <el-form-item label="姓名:" >
+                <el-form-item label="相关企业信息不可修改"></el-form-item>
+                <el-form-item label="姓名:">
                     <el-input
                             placeholder="请输入姓名"
                             v-model="staffToModify.staffName">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="拥有公司数目:" >
+                <el-form-item label="拥有公司数目:">
                     <el-input
                             placeholder="请输入拥有公司数目"
                             v-model="staffToModify.owningEnterpriseNumber">
                     </el-input>
                 </el-form-item>
-                <el-form-item label="职位:" >
+                <el-form-item label="职位:">
                     <el-input
                             placeholder="请输入职位"
                             v-model="staffToModify.position">
@@ -114,11 +113,13 @@
                     by_name: false,
                 },
                 originalStaff: {
+                    staffId: '',
                     enterpriseId: 0,
                     staffName: '',
                     position: '',
                 },
                 staffToModify: {
+                    staffId: '',
                     staffName: '',
                     owningEnterpriseNumber: 0,
                     position: '',
@@ -170,36 +171,32 @@
                 });
             },
             delete_staff_dialog(row) {
-                this.originalStaff.enterpriseId = row.enterpriseId;
-                this.originalStaff.staffName = row.staffName;
-                this.originalStaff.position = row.position;
+                this.originalStaff.staffId = row.staffId;
                 this.dialogDeleteConfirmVisible = true;
             },
             delete_staff() {
                 let _this = this;
-                this.postRequest("/staff/delete", {"enterpriseId": _this.originalStaff.enterpriseId,
-                    "staffName": _this.originalStaff.staffName,
-                    "position": _this.originalStaff.position}).then(resp => {
+                this.postRequest("/staff/delete", {"staffId": _this.originalStaff.staffId}).then(resp => {
                     if (resp && resp.status === 200) {
-                        if (this.staffToSearch.by_name == true) {
+                        if (this.staffToSearch.by_name === true) {
                             _this.search_direct();
-                        }
-                        else {
+                        } else {
                             _this.search_by_enterprise();
                         }
                         _this.dialogDeleteConfirmVisible = false;
                         _this.$message({type: 'success', message: '删除成功'});
-                    }
-                    else {
+                    } else {
                         _this.dialogDeleteConfirmVisible = false;
                         _this.$message({type: 'error', message: '删除失败'});
                     }
                 });
             },
             modify_staff_dialog(row) {
+                this.originalStaff.staffId = row.staffId;
                 this.originalStaff.enterpriseId = row.enterpriseId;
                 this.originalStaff.staffName = row.staffName;
                 this.originalStaff.position = row.position;
+                this.staffToModify.staffId = row.staffId;
                 this.staffToModify.staffName = row.staffName;
                 this.staffToModify.owningEnterpriseNumber = row.owningEnterpriseNumber;
                 this.staffToModify.position = row.position;
@@ -207,23 +204,21 @@
             },
             modify_staff() {
                 let _this = this;
-                this.postRequest("/staff/modify", {"originalEnterpriseId": _this.originalStaff.enterpriseId,
-                    "originalStaffName": _this.originalStaff.staffName,
-                    "originalPosition": _this.originalStaff.position,
+                this.postRequest("/staff/modify", {
+                    "staffId": _this.staffToModify.staffId,
                     "staffName": _this.staffToModify.staffName,
                     "owningEnterpriseNumber": _this.staffToModify.owningEnterpriseNumber,
-                    "position": _this.staffToModify.position}).then(resp => {
+                    "position": _this.staffToModify.position
+                }).then(resp => {
                     if (resp && resp.status === 200) {
-                        if (this.staffToSearch.by_name == true) {
+                        if (this.staffToSearch.by_name === true) {
                             _this.search_direct();
-                        }
-                        else {
+                        } else {
                             _this.search_by_enterprise();
                         }
                         _this.dialogModifyVisible = false;
                         _this.$message({type: 'success', message: '修改成功'});
-                    }
-                    else {
+                    } else {
                         _this.dialogModifyVisible = false;
                         _this.$message({type: 'error', message: '修改失败'});
                     }

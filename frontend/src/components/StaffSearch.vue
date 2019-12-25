@@ -18,8 +18,15 @@
                     max-height="410">
 
                 <el-table-column
-                        prop="enterpriseId"
-                        label="相关企业id"
+                        prop="staffId"
+                        label="人员id"
+                        width="150"
+                        align="left">
+                </el-table-column>
+
+                <el-table-column
+                        prop="staffName"
+                        label="人员姓名"
                         width="150"
                         align="left">
                 </el-table-column>
@@ -27,28 +34,19 @@
                 <el-table-column
                         prop="enterpriseName"
                         label="相关企业名称"
-                        width="350"
                         align="left">
                 </el-table-column>
 
-                <el-table-column
-                        prop="staffName"
-                        label="姓名"
-                        width="150"
-                        align="left">
-                </el-table-column>
 
                 <el-table-column
                         prop="owningEnterpriseNumber"
                         label="拥有公司数目"
-                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="position"
                         label="职位"
-                        width="300"
                         align="left">
                 </el-table-column>
 

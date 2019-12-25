@@ -1,12 +1,14 @@
 package com.demon.dbserver.bean;
 
 
+import java.io.Serializable;
+
 /**
  * 企业基本信息实体类
  *
  * @author lixinyang
  */
-public class Enterprise {
+public class Enterprise implements Serializable {
 
     private int enterpriseId;
     private String unifiedSocialCreditIdentifier;
