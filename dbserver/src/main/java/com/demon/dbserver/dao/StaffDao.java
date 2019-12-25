@@ -17,15 +17,11 @@ public interface StaffDao {
     @Delete("delete from enterprise_main_staff where staff_id = #{staffId} ")
     void deleteStaff(@Param("staffId") Integer staffId);
 
-    @Update("update enterprise_main_staff set staff_name = '${staffName}', " +
-            "owning_enterprise_number = ${owningEnterpriseNumber}, " +
-            "position = '${position}' " +
-            "where enterprise_id = ${originalEnterpriseId} and " +
-            "staff_name = '${originalStaffName}' and " +
-            "position = '${originalPosition}'")
-    void updateStaff(@Param("originalEnterpriseId") Integer originalEnterpriseId,
-                     @Param("originalStaffName") String originalStaffName,
-                     @Param("originalPosition") String originalPosition,
+    @Update("update enterprise_main_staff set staff_name = #{staffName}, " +
+            "owning_enterprise_number = #{owningEnterpriseNumber}, " +
+            "position = #{position} " +
+            "where staff_id = #{staffId}")
+    void updateStaff(@Param("staffId") Integer staffId,
                      @Param("staffName") String staffName,
                      @Param("owningEnterpriseNumber") Integer owningEnterpriseNumber,
                      @Param("position") String position);

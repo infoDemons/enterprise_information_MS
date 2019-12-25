@@ -12,7 +12,6 @@ public interface StaffService {
 
     boolean deleteStaff(Integer staffId);
 
-    boolean modifyStaff(Integer originalEnterpriseId, String originalStaffName, String originalPosition,
-                        String staffName, Integer owningEnterpriseNumber, String position);
+    boolean modifyStaff(Integer staffId, String staffName, Integer owningEnterpriseNumber, String position);
 
 }

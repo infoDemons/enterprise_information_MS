@@ -37,11 +37,9 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public boolean modifyStaff(Integer originalEnterpriseId, String originalStaffName, String originalPosition,
-                                String staffName, Integer owningEnterpriseNumber, String position) {
+    public boolean modifyStaff(Integer staffId, String staffName, Integer owningEnterpriseNumber, String position) {
         try {
-            staffDao.updateStaff(originalEnterpriseId, originalStaffName, originalPosition,
-                                 staffName, owningEnterpriseNumber, position);
+            staffDao.updateStaff(staffId, staffName, owningEnterpriseNumber, position);
             return true;
         } catch (Exception exception) {
             exception.printStackTrace();

@@ -35,10 +35,8 @@ public class StaffController {
     }
 
     @PostMapping("/modify")
-    public ResultCode modifyStaff(Integer originalEnterpriseId, String originalStaffName, String originalPosition,
-                                  String staffName, Integer owningEnterpriseNumber, String position) {
-        if (staffService.modifyStaff(originalEnterpriseId, originalStaffName, originalPosition,
-                                     staffName, owningEnterpriseNumber, position)) {
+    public ResultCode modifyStaff(Integer staffId, String staffName, Integer owningEnterpriseNumber, String position) {
+        if (staffService.modifyStaff(staffId, staffName, owningEnterpriseNumber, position)) {
             return ResultCode.SUCCESS;
         } else {
             return ResultCode.FAILED;
