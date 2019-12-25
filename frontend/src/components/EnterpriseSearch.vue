@@ -16,7 +16,7 @@
                     :data="enterprises"
                     tooltip-effect="dark"
                     style="width: 100%;"
-                    max-height="410">
+                    max-height="510">
 
                 <el-table-column
                         prop="enterpriseId"

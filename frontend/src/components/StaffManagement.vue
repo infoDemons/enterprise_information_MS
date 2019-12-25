@@ -16,19 +16,19 @@
                     :data="staff"
                     tooltip-effect="dark"
                     style="width: 100%;"
-                    max-height="410">
+                    max-height="510">
 
                 <el-table-column
                         prop="staffId"
                         label="人员id"
-                        width="150"
+                        width="90"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="staffName"
                         label="人员姓名"
-                        width="150"
+                        width="90"
                         align="left">
                 </el-table-column>
 
@@ -50,7 +50,7 @@
                         align="left">
                 </el-table-column>
 
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="220" align="left">
                     <template slot-scope="scope">
                         <el-button size="small" type="danger" icon="el-icon-delete"
                                    @click="delete_staff_dialog(scope.row)">
