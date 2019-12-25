@@ -18,30 +18,28 @@
                     max-height="410">
 
                 <el-table-column
-                        prop="enterpriseId"
-                        label="相关企业id"
-                        width="130"
+                        prop="staffId"
+                        label="人员id"
+                        width="150"
+                        align="left">
+                </el-table-column>
+
+                <el-table-column
+                        prop="staffName"
+                        label="人员姓名"
+                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="enterpriseName"
                         label="相关企业名称"
-                        width="300"
-                        align="left">
-                </el-table-column>
-
-                <el-table-column
-                        prop="staffName"
-                        label="姓名"
-                        width="130"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="owningEnterpriseNumber"
                         label="拥有公司数目"
-                        width="130"
                         align="left">
                 </el-table-column>
 
@@ -170,14 +168,12 @@
                 });
             },
             delete_staff_dialog(row) {
-                this.originalStaff.enterpriseId = row.enterpriseId;
-                this.originalStaff.staffName = row.staffName;
-                this.originalStaff.position = row.position;
+                this.originalStaff.staffId = row.staffId;
                 this.dialogDeleteConfirmVisible = true;
             },
             delete_staff() {
                 let _this = this;
-                this.postRequest("/staff/delete", {"enterpriseId": _this.originalStaff.enterpriseId,
+                this.postRequest("/staff/delete", {"staffId": _this.originalStaff.staffId,
                     "staffName": _this.originalStaff.staffName,
                     "position": _this.originalStaff.position}).then(resp => {
                     if (resp && resp.status === 200) {
