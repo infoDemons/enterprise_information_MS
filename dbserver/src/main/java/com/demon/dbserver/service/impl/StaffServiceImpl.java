@@ -26,9 +26,9 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public boolean deleteStaff(Integer enterpriseId, String staffName, String position) {
+    public boolean deleteStaff(Integer staffId) {
         try {
-            staffDao.deleteStaff(enterpriseId, staffName, position);
+            staffDao.deleteStaff(staffId);
             return true;
         } catch (Exception exception) {
             exception.printStackTrace();

@@ -26,8 +26,8 @@ public class StaffController {
     }
 
     @PostMapping("/delete")
-    public ResultCode deleteStaff(Integer enterpriseId, String staffName, String position) {
-        if (staffService.deleteStaff(enterpriseId, staffName, position)) {
+    public ResultCode deleteStaff(Integer staffId) {
+        if (staffService.deleteStaff(staffId)) {
             return ResultCode.SUCCESS;
         } else {
             return ResultCode.FAILED;
