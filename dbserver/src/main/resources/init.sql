@@ -164,3 +164,18 @@ create table `user`
 
 insert into `user`(`id`, `username`, `password`, `role`)
 values (1, 'root', '63a9f0ea7bb98050796b649e85481845', 'root');
+
+
+create trigger refresh_enterprise_name_trigger
+    after update
+    on `enterprise`
+    for each row
+begin
+    update enterprise_main_staff
+    set enterprise_name = new.enterprise_name
+    where enterprise_id = new.enterprise_id;
+
+    update enterprise_information_change
+    set enterprise_name = new.enterprise_name
+    where enterprise_id = new.enterprise_id;
+end;
