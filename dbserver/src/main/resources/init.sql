@@ -77,6 +77,7 @@ create table `trademark`
 drop table if exists `enterprise_main_staff`;
 create table `enterprise_main_staff`
 (
+    `staff_id`                 int primary key not null auto_increment,
     `enterprise_id`            int,
     `enterprise_name`          text,
     `staff_name`               text,
@@ -127,7 +128,11 @@ load data infile '/Users/albert/DB/project/dataset/主要人员信息.csv'
     into table dbserver.enterprise_main_staff
     fields terminated by ','
     enclosed by '"'
-    lines terminated by '\r\n' ignore 1 lines;
+    lines terminated by '\r\n' ignore 1 lines (`enterprise_id`,
+                                               `enterprise_name`,
+                                               `staff_name`,
+                                               `owning_enterprise_number`,
+                                               `position`);
 
 
 drop table if exists `user`;
