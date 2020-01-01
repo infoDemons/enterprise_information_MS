@@ -7,6 +7,7 @@ import IndustrySearch from "@/components/IndustrySearch";
 import EnterpriseSearch from '@/components/EnterpriseSearch'
 import StaffSearch from '@/components/StaffSearch'
 import StaffManagement from "../components/StaffManagement";
+import EnterpriseManagement from "@/components/EnterpriseManagement";
 
 Vue.use(Router);
 
@@ -36,6 +37,14 @@ export default new Router({
                     path: 'enterprise_search',
                     name: '搜索企业',
                     component: EnterpriseSearch,
+                    meta: {
+                        keepAlive: true
+                    }
+                },
+                {
+                    path: 'enterprise_management',
+                    name: '搜索企业',
+                    component: EnterpriseManagement,
                     meta: {
                         keepAlive: true
                     }

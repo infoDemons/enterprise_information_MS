@@ -21,6 +21,9 @@
                         <el-menu-item @click="pushRouter('/home/staff_management')">
                             <span slot="title">人员管理</span>
                         </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/enterprise_management')">
+                            <span slot="title">企业管理</span>
+                        </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/industry_search')">
                             <span slot="title">综合查询</span>
                         </el-menu-item>

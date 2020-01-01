@@ -1,12 +1,10 @@
 package com.demon.dbserver.controller;
 
 import com.demon.dbserver.bean.Enterprise;
+import com.demon.dbserver.common.ResultCode;
 import com.demon.dbserver.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,5 +49,23 @@ public class EnterpriseController {
     public List<Enterprise> getEnterpriseByAdvancedSearch(Integer enterpriseId, String enterpriseName,
                                                           String industry, String form) {
         return enterpriseService.getEnterpriseByAdvancedSearch(enterpriseId, enterpriseName, industry, form);
+    }
+
+    @PostMapping("/delete")
+    public ResultCode deleteEnterpriseById(Integer enterpriseId) {
+        if (enterpriseService.deleteEnterpriseById(enterpriseId)) {
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.FAILED;
+        }
+    }
+
+    @PostMapping("/update")
+    public ResultCode updateEnterprise(Enterprise enterprise) {
+        if (enterpriseService.updateEnterprise(enterprise)) {
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.FAILED;
+        }
     }
 }

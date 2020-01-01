@@ -127,4 +127,30 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             }
         });
     }
+
+    @Override
+    public boolean deleteEnterpriseById(Integer id) {
+        try {
+            enterpriseBriefRepository.deleteById(id);
+            enterpriseDao.deleteEnterprise(id);
+            return true;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateEnterprise(Enterprise enterprise) {
+        try {
+            enterpriseBriefRepository.deleteById(enterprise.getEnterpriseId());
+            EnterpriseBrief enterpriseBrief = new EnterpriseBrief(enterprise.getEnterpriseId(), enterprise.getEnterpriseName());
+            enterpriseBriefRepository.index(enterpriseBrief);
+            enterpriseDao.updateEnterprise(enterprise);
+            return true;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -21,4 +21,8 @@ public interface EnterpriseService {
     List<String> getAllFormOfBusinessEnterprise();
 
     List<Enterprise> getEnterpriseByAdvancedSearch(Integer id, String name, String industry, String form);
+
+    boolean deleteEnterpriseById(Integer id);
+
+    boolean updateEnterprise(Enterprise enterprise);
 }
