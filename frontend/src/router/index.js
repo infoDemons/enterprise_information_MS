@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Value from '@/components/Value'
 import Home from '@/components/Home'
+import IndustrySearch from "@/components/IndustrySearch";
 import EnterpriseSearch from '@/components/EnterpriseSearch'
 import StaffSearch from '@/components/StaffSearch'
 import StaffManagement from "../components/StaffManagement";
@@ -51,6 +52,14 @@ export default new Router({
                     path: 'staff_management',
                     name: '管理人员',
                     component: StaffManagement,
+                    meta: {
+                        keepAlive: true
+                    }
+                },
+                {
+                    path: 'industry_search',
+                    name: '综合查询',
+                    component: IndustrySearch,
                     meta: {
                         keepAlive: true
                     }
