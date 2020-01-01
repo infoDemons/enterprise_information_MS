@@ -267,8 +267,4 @@
     .el-input {
         width: 500px;
     }
-
-    /*.el-input__inner {*/
-    /*    width: 400px;*/
-    /*}*/
 </style>
