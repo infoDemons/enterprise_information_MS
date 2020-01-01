@@ -1,6 +1,5 @@
 package com.demon.dbserver.bean;
 
-
 import java.io.Serializable;
 
 /**
