@@ -7,7 +7,9 @@
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">精确搜索</el-button>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_fuzzy">模糊搜索</el-button>
-            <el-button type="primary" size="medium" style="margin-left: 15px" >高级搜索</el-button>
+            <el-button type="primary" size="medium" style="margin-left: 15px" @click="showAdvancedSearchDialog=true">
+                高级搜索
+            </el-button>
         </el-header>
 
         <el-main class="with_shadow">
@@ -70,6 +72,32 @@
                 <el-button type="primary" @click="dialogFormVisible = false">确定</el-button>
             </div>
         </el-dialog>
+
+        <el-dialog title="高级搜索" :visible.sync="showAdvancedSearchDialog">
+            <el-form :model="form">
+                <el-form-item label="企业id:" :label-width="formLabelWidth">
+                    <el-input v-model="advancedSearchDialogForm.enterpriseId" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="企业名称:" :label-width="formLabelWidth">
+                    <el-input v-model="advancedSearchDialogForm.enterpriseName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="所在行业:" :label-width="formLabelWidth">
+                    <el-autocomplete
+                            :label-width="formLabelWidth"
+                            class="inline-input"
+                            v-model="advancedSearchDialogForm.industry"
+                            :fetch-suggestions="queryIndustries"
+                            placeholder="请输入内容"
+                    ></el-autocomplete>
+                </el-form-item>
+                <el-form-item label="企业类型:" :label-width="formLabelWidth">
+                    <el-input v-model="advancedSearchDialogForm.formOfBusinessEnterprise" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="search_advanced()">确定</el-button>
+            </div>
+        </el-dialog>
     </el-container>
 </template>
 
@@ -78,6 +106,8 @@
         name: "EnterpriseSearch",
         data() {
             return {
+                industriesAll: [],
+                formOfBusinessEnterpriseAll: [],
                 enterprises: [],
                 dialogFormVisible: false,
                 form: {
@@ -93,6 +123,13 @@
                 formLabelWidth: '120px',
                 enterpriseToSearch: {
                     name: ''
+                },
+                showAdvancedSearchDialog: false,
+                advancedSearchDialogForm: {
+                    enterpriseId: 0,
+                    enterpriseName: '',
+                    formOfBusinessEnterprise: null,
+                    industry: null,
                 }
             }
         },
@@ -139,6 +176,33 @@
                     }
                 });
             },
+            search_advanced() {
+                let _this = this;
+                this.getRequest("/enterprise/advanced/", {
+                    enterpriseId: _this.advancedSearchDialogForm.enterpriseId,
+                    enterpriseName: _this.advancedSearchDialogForm.enterpriseName,
+                    formOfBusinessEnterprise: _this.advancedSearchDialogForm.formOfBusinessEnterprise,
+                    industry: _this.advancedSearchDialogForm.industry
+                }).then(resp => {
+                    if (resp && resp.status === 200) {
+                        if (resp.data.length === 0) {
+                            _this.enterprises = [];
+                            _this.$message({type: 'error', message: '没有结果'});
+                        } else if (resp.data.length < 1999) {
+                            _this.enterprises = resp.data;
+                        } else {
+                            _this.enterprises = [];
+                            _this.$message({type: 'error', message: '搜索目标过于泛化 请尝试更精确的搜索'});
+                        }
+
+                    }
+                });
+                this.advancedSearchDialogForm.enterpriseId = 0;
+                this.advancedSearchDialogForm.enterpriseName = '';
+                this.advancedSearchDialogForm.formOfBusinessEnterprise = null;
+                this.advancedSearchDialogForm.industry = null;
+                this.showAdvancedSearchDialog = false;
+            },
             itemClick(row) {
                 this.form.enterpriseId = row.enterpriseId;
                 this.form.enterpriseName = row.enterpriseName;
@@ -149,6 +213,37 @@
                 this.form.legalRepresentative = row.legalRepresentative;
                 this.dialogFormVisible = true;
             },
+            loadIndustryAndForm() {
+                let _this = this;
+                this.getRequest("/industry/all").then(resp => {
+                    if (resp && resp.status === 200) {
+                        _this.industriesAll = resp.data;
+                        _this.industriesAll = _this.industriesAll.map((industry => {
+                            return industry.industryName;
+                        }));
+                    }
+                });
+                this.getRequest("/enterprise/form/all").then(resp => {
+                    if (resp && resp.status === 200) {
+                        _this.formOfBusinessEnterpriseAll = resp.data;
+                    }
+                });
+            },
+            queryIndustries(queryString, cb) {
+                let industriesAll = this.industriesAll;
+                let results = queryString ? industriesAll.filter(this.createFilter(queryString)) : industriesAll;
+                // console.log(results);
+                // 调用 callback 返回建议列表的数据
+                cb(results);
+            },
+            createFilter(queryString) {
+                return (industry) => {
+                    return (industry.indexOf(queryString) === 0);
+                };
+            },
+        },
+        mounted: function () {
+            this.loadIndustryAndForm();
         },
     }
 </script>

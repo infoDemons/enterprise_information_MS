@@ -11,10 +11,9 @@
 
                 <el-table-column
                         label="行业"
-                        align="left">
-                    <template slot-scope="scope"><span style="color: #409eff;cursor: pointer"
-                                                       @click="itemClick(scope.row)">{{ scope.row.industryName}}</span>
-                    </template>
+                        align="left"
+                        prop="industryName">
+
                 </el-table-column>
 
                 <el-table-column
@@ -46,9 +45,6 @@
                         _this.industries = resp.data;
                     }
                 });
-            },
-            itemClick (row) {
-
             },
 
         },
