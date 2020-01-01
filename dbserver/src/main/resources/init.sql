@@ -57,7 +57,7 @@ create table `enterprise_information_change`
     `information_before`               text,
     `information_after`                text,
     `create_date`                      text,
-    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`)
+    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`) on delete cascade
 );
 
 
@@ -73,7 +73,7 @@ create table `trademark`
     `classification`      text,
     `trademark_status`    text,
     `trademark_process`   text,
-    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`)
+    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`) on delete cascade
 );
 
 drop table if exists `enterprise_main_staff`;
@@ -85,7 +85,7 @@ create table `enterprise_main_staff`
     `staff_name`               text,
     `owning_enterprise_number` int,
     `position`                 text,
-    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`)
+    foreign key (`enterprise_id`) references `enterprise` (`enterprise_id`) on delete cascade
 );
 
 

@@ -38,6 +38,17 @@
                         align="left">
                 </el-table-column>
 
+                <el-table-column label="操作" width="220" align="left">
+                    <template slot-scope="scope">
+                        <el-button size="small" type="danger" icon="el-icon-delete"
+                                   @click="delete_enterprise_dialog(scope.row)">
+                        </el-button>
+                        <el-button size="small" type="warning" icon="el-icon-edit"
+                                   @click="modify_enterprise_dialog(scope.row)">
+                        </el-button>
+                    </template>
+                </el-table-column>
+
             </el-table>
         </el-main>
 
@@ -66,9 +77,15 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="dialogFormVisible = false">确定</el-button>
+                <el-button type="primary" @click="dialogFormVisible=false">确定</el-button>
             </div>
         </el-dialog>
+
+        <el-dialog title="删除后不可恢复，确定要删除吗？" :visible.sync="dialogDeleteConfirmVisible">
+            <el-button type="warning" @click="do_delete_enterprise">确 定</el-button>
+            <el-button type="info" @click="dialogDeleteConfirmVisible=false">取 消</el-button>
+        </el-dialog>
+
 
     </el-container>
 </template>
@@ -96,6 +113,11 @@
                 enterpriseToSearch: {
                     name: ''
                 },
+                dialogDeleteConfirmVisible: false,
+                enterpriseToDelete: {
+                    id: 0
+                },
+                last_search_direct: false
             }
         },
         methods: {
@@ -116,9 +138,9 @@
                             _this.enterprises = [];
                             _this.$message({type: 'error', message: '搜索目标过于泛化 请尝试更精确的搜索'});
                         }
-
                     }
                 });
+                this.last_search_direct = true;
             },
             search_fuzzy() {
                 if (this.enterpriseToSearch.name === '') {
@@ -140,6 +162,7 @@
 
                     }
                 });
+                this.last_search_direct = false;
             },
             itemClick(row) {
                 this.form.enterpriseId = row.enterpriseId;
@@ -150,6 +173,30 @@
                 this.form.businessScope = row.businessScope;
                 this.form.legalRepresentative = row.legalRepresentative;
                 this.dialogFormVisible = true;
+            },
+            delete_enterprise_dialog(row) {
+                this.enterpriseToDelete.id = row.enterpriseId;
+                this.dialogDeleteConfirmVisible = true;
+            },
+            do_delete_enterprise() {
+                let _this = this;
+                this.postRequest("/enterprise/delete", {"enterpriseId": _this.enterpriseToDelete.id}).then(resp => {
+                    if (resp && resp.status === 200) {
+                        if (_this.last_search_direct === true) {
+                            _this.search_direct();
+                        } else {
+                            _this.search_fuzzy();
+                        }
+                        _this.dialogDeleteConfirmVisible = false;
+                        _this.$message({type: 'success', message: '删除成功'});
+                    } else {
+                        _this.dialogDeleteConfirmVisible = false;
+                        _this.$message({type: 'error', message: '删除失败'});
+                    }
+                });
+            },
+            modify_enterprise_dialog() {
+
             }
         },
     }

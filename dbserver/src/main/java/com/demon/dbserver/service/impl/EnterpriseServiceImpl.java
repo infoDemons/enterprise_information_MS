@@ -1,6 +1,7 @@
 package com.demon.dbserver.service.impl;
 
 import com.demon.dbserver.bean.Enterprise;
+import com.demon.dbserver.common.ResultCode;
 import com.demon.dbserver.dao.EnterpriseDao;
 import com.demon.dbserver.es.EnterpriseBrief;
 import com.demon.dbserver.es.EnterpriseBriefRepository;
@@ -126,5 +127,17 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 enterpriseDao.updateEnterprisePopularityById(id);
             }
         });
+    }
+
+    @Override
+    public boolean deleteEnterpriseById(Integer id) {
+        try {
+            enterpriseBriefRepository.deleteById(id);
+            enterpriseDao.deleteEnterprise(id);
+            return true;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
     }
 }

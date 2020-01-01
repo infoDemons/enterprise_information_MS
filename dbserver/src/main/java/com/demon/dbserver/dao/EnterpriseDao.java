@@ -1,10 +1,7 @@
 package com.demon.dbserver.dao;
 
 import com.demon.dbserver.bean.Enterprise;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -37,4 +34,7 @@ public interface EnterpriseDao {
                                                    @Param("name") String name,
                                                    @Param("industry") String industry,
                                                    @Param("form") String form);
+
+    @Delete("delete from enterprise where enterprise_id =  #{id}")
+    void deleteEnterprise(@Param("id") Integer id);
 }
