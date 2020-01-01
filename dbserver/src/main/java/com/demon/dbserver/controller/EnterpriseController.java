@@ -59,4 +59,13 @@ public class EnterpriseController {
             return ResultCode.FAILED;
         }
     }
+
+    @PostMapping("/update")
+    public ResultCode updateEnterprise(Enterprise enterprise) {
+        if (enterpriseService.updateEnterprise(enterprise)) {
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.FAILED;
+        }
+    }
 }

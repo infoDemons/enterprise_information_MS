@@ -37,4 +37,13 @@ public interface EnterpriseDao {
 
     @Delete("delete from enterprise where enterprise_id =  #{id}")
     void deleteEnterprise(@Param("id") Integer id);
+
+    @Update("update enterprise set enterprise_name = #{enterpriseName}, " +
+            "registered_capital = #{registeredCapital}, " +
+            "paid_in_capital = #{paidInCapital}, " +
+            "industry = #{industry}, " +
+            "business_scope = #{businessScope}, " +
+            "legal_representative = #{legalRepresentative} " +
+            "where enterprise_id = #{enterpriseId}")
+    void updateEnterprise(Enterprise enterprise);
 }
