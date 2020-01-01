@@ -100,7 +100,7 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="search_advanced()">确定</el-button>
+                <el-button type="primary" @click="search_advanced()">搜索</el-button>
             </div>
         </el-dialog>
     </el-container>
@@ -134,8 +134,8 @@
                 advancedSearchDialogForm: {
                     enterpriseId: 0,
                     enterpriseName: '',
-                    formOfBusinessEnterprise: null,
-                    industry: null,
+                    formOfBusinessEnterprise: '',
+                    industry: '',
                 }
             }
         },
@@ -184,12 +184,12 @@
             },
             search_advanced() {
                 let _this = this;
-                this.getRequest("/enterprise/advanced/", {
-                    enterpriseId: _this.advancedSearchDialogForm.enterpriseId,
-                    enterpriseName: _this.advancedSearchDialogForm.enterpriseName,
-                    formOfBusinessEnterprise: _this.advancedSearchDialogForm.formOfBusinessEnterprise,
-                    industry: _this.advancedSearchDialogForm.industry
-                }).then(resp => {
+                let tmp_headers = '?';
+                tmp_headers += 'enterpriseId=' + _this.advancedSearchDialogForm.enterpriseId;
+                tmp_headers += '&enterpriseName=' + _this.advancedSearchDialogForm.enterpriseName;
+                tmp_headers += '&form=' + _this.advancedSearchDialogForm.formOfBusinessEnterprise;
+                tmp_headers += '&industry=' + _this.advancedSearchDialogForm.industry;
+                this.getRequest("/enterprise/advanced" + tmp_headers).then(resp => {
                     if (resp && resp.status === 200) {
                         if (resp.data.length === 0) {
                             _this.enterprises = [];
@@ -200,13 +200,12 @@
                             _this.enterprises = [];
                             _this.$message({type: 'error', message: '搜索目标过于泛化 请尝试更精确的搜索'});
                         }
-
                     }
                 });
                 this.advancedSearchDialogForm.enterpriseId = 0;
                 this.advancedSearchDialogForm.enterpriseName = '';
-                this.advancedSearchDialogForm.formOfBusinessEnterprise = null;
-                this.advancedSearchDialogForm.industry = null;
+                this.advancedSearchDialogForm.formOfBusinessEnterprise = '';
+                this.advancedSearchDialogForm.industry = '';
                 this.showAdvancedSearchDialog = false;
             },
             itemClick(row) {

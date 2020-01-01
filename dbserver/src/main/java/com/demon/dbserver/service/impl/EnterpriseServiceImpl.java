@@ -93,6 +93,14 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         return enterpriseDao.getAllFormOfBusinessEnterprise();
     }
 
+    @Override
+    public List<Enterprise> getEnterpriseByAdvancedSearch(Integer id, String name, String industry, String form) {
+        if (id == null) {
+            id = -1;
+        }
+        return enterpriseDao.getEnterpriseByAdvancedSearch(id, name, industry, form);
+    }
+
     private List<Integer> mapIds(List<Enterprise> enterprises) {
         return enterprises.stream()
                 .map(Enterprise::getEnterpriseId)

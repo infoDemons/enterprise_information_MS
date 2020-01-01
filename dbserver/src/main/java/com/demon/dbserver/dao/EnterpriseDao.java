@@ -32,4 +32,9 @@ public interface EnterpriseDao {
 
     @Select("select distinct form_of_business_enterprise from enterprise;")
     List<String> getAllFormOfBusinessEnterprise();
+
+    List<Enterprise> getEnterpriseByAdvancedSearch(@Param("id") Integer id,
+                                                   @Param("name") String name,
+                                                   @Param("industry") String industry,
+                                                   @Param("form") String form);
 }

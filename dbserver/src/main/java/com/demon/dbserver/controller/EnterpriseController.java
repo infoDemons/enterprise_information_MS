@@ -46,4 +46,10 @@ public class EnterpriseController {
     public List<String> getAllFormOfBusinessEnterprise() {
         return enterpriseService.getAllFormOfBusinessEnterprise();
     }
+
+    @GetMapping("/advanced")
+    public List<Enterprise> getEnterpriseByAdvancedSearch(Integer enterpriseId, String enterpriseName,
+                                                          String industry, String form) {
+        return enterpriseService.getEnterpriseByAdvancedSearch(enterpriseId, enterpriseName, industry, form);
+    }
 }

@@ -19,4 +19,22 @@
             #{item}
         </foreach>
     </update>
+
+    <select id="getEnterpriseByAdvancedSearch" resultType="com.demon.dbserver.bean.Enterprise">
+        select *
+        from enterprise where 1
+        <if test="id > 0">
+            and enterprise_id = #{id}
+        </if>
+        <if test="name!=null and name!=''">
+            and enterprise_name = #{name}
+        </if>
+        <if test="industry!=null and industry!=''">
+            and industry = #{industry}
+        </if>
+        <if test="form!=null and form!=''">
+            and form_of_business_enterprise = #{form}
+        </if>
+        limit 2000
+    </select>
 </mapper>
