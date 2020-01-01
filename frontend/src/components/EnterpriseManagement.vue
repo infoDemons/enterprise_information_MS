@@ -86,6 +86,32 @@
             <el-button type="info" @click="dialogDeleteConfirmVisible=false">取 消</el-button>
         </el-dialog>
 
+        <el-dialog title="更改企业" :visible.sync="dialogUpateFormVisible">
+            <el-form :model="form">
+                <el-form-item label="企业名称:" :label-width="formLabelWidth">
+                    <el-input v-model="form.enterpriseName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="注册资本:" :label-width="formLabelWidth">
+                    <el-input v-model="form.registeredCapital" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="已缴资本:" :label-width="formLabelWidth">
+                    <el-input v-model="form.paidInCapital" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="所在行业:" :label-width="formLabelWidth">
+                    <el-input v-model="form.industry" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="法定代表人:" :label-width="formLabelWidth">
+                    <el-input v-model="form.legalRepresentative" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="经营范围:" :label-width="formLabelWidth">
+                    <el-input v-model="form.businessScope" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="do_modify_enterprise">确定</el-button>
+            </div>
+        </el-dialog>
+
 
     </el-container>
 </template>
@@ -114,6 +140,7 @@
                     name: ''
                 },
                 dialogDeleteConfirmVisible: false,
+                dialogUpateFormVisible: false,
                 enterpriseToDelete: {
                     id: 0
                 },
@@ -187,16 +214,47 @@
                         } else {
                             _this.search_fuzzy();
                         }
-                        _this.dialogDeleteConfirmVisible = false;
                         _this.$message({type: 'success', message: '删除成功'});
                     } else {
-                        _this.dialogDeleteConfirmVisible = false;
                         _this.$message({type: 'error', message: '删除失败'});
                     }
+                    _this.dialogDeleteConfirmVisible = false;
                 });
             },
-            modify_enterprise_dialog() {
-
+            modify_enterprise_dialog(row) {
+                this.form.enterpriseId = row.enterpriseId;
+                this.form.enterpriseName = row.enterpriseName;
+                this.form.registeredCapital = row.registeredCapital;
+                this.form.paidInCapital = row.paidInCapital;
+                this.form.industry = row.industry;
+                this.form.businessScope = row.businessScope;
+                this.form.legalRepresentative = row.legalRepresentative;
+                this.dialogUpateFormVisible = true;
+            },
+            do_modify_enterprise() {
+                let _this = this;
+                this.postRequest("/enterprise/update", {
+                        "enterpriseId": _this.form.enterpriseId,
+                        "enterpriseName": _this.form.enterpriseName,
+                        "registeredCapital": _this.form.registeredCapital,
+                        "paidInCapital": _this.form.paidInCapital,
+                        "industry": _this.form.industry,
+                        "businessScope": _this.form.businessScope,
+                        "legalRepresentative": _this.form.legalRepresentative,
+                    }
+                ).then(resp => {
+                    if (resp && resp.status === 200) {
+                        if (_this.last_search_direct === true) {
+                            _this.search_direct();
+                        } else {
+                            _this.search_fuzzy();
+                        }
+                        _this.$message({type: 'success', message: '更改成功'});
+                    } else {
+                        _this.$message({type: 'error', message: '更改失败'});
+                    }
+                    _this.dialogUpateFormVisible = false;
+                });
             }
         },
     }
