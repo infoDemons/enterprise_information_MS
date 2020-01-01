@@ -79,19 +79,24 @@
                     <el-input v-model="advancedSearchDialogForm.enterpriseId" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="企业名称:" :label-width="formLabelWidth">
-                    <el-input v-model="advancedSearchDialogForm.enterpriseName" autocomplete="off"></el-input>
+                    <el-input v-model="advancedSearchDialogForm.enterpriseName" autocomplete="off"
+                              placeholder="请输入内容"></el-input>
                 </el-form-item>
                 <el-form-item label="所在行业:" :label-width="formLabelWidth">
                     <el-autocomplete
-                            :label-width="formLabelWidth"
-                            class="inline-input"
+                            style="width: 500px;"
                             v-model="advancedSearchDialogForm.industry"
                             :fetch-suggestions="queryIndustries"
-                            placeholder="请输入内容"
-                    ></el-autocomplete>
+                            placeholder="请输入内容">
+                    </el-autocomplete>
                 </el-form-item>
                 <el-form-item label="企业类型:" :label-width="formLabelWidth">
-                    <el-input v-model="advancedSearchDialogForm.formOfBusinessEnterprise" autocomplete="off"></el-input>
+                    <el-autocomplete
+                            style="width: 500px;"
+                            v-model="advancedSearchDialogForm.formOfBusinessEnterprise"
+                            :fetch-suggestions="queryForms"
+                            placeholder="请输入内容">
+                    </el-autocomplete>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -106,6 +111,7 @@
         name: "EnterpriseSearch",
         data() {
             return {
+                sss: '',
                 industriesAll: [],
                 formOfBusinessEnterpriseAll: [],
                 enterprises: [],
@@ -219,26 +225,35 @@
                     if (resp && resp.status === 200) {
                         _this.industriesAll = resp.data;
                         _this.industriesAll = _this.industriesAll.map((industry => {
-                            return industry.industryName;
+                            return {"value": industry.industryName};
                         }));
                     }
                 });
                 this.getRequest("/enterprise/form/all").then(resp => {
                     if (resp && resp.status === 200) {
                         _this.formOfBusinessEnterpriseAll = resp.data;
+                        _this.formOfBusinessEnterpriseAll = _this.formOfBusinessEnterpriseAll.map((item => {
+                            return {"value": item};
+                        }));
                     }
                 });
             },
             queryIndustries(queryString, cb) {
                 let industriesAll = this.industriesAll;
                 let results = queryString ? industriesAll.filter(this.createFilter(queryString)) : industriesAll;
-                // console.log(results);
+                // 调用 callback 返回建议列表的数据
+                cb(results);
+            },
+            queryForms(queryString, cb) {
+                let formOfBusinessEnterpriseAll = this.formOfBusinessEnterpriseAll;
+                let results = queryString ? formOfBusinessEnterpriseAll.filter(this.createFilter(queryString))
+                    : formOfBusinessEnterpriseAll;
                 // 调用 callback 返回建议列表的数据
                 cb(results);
             },
             createFilter(queryString) {
-                return (industry) => {
-                    return (industry.indexOf(queryString) === 0);
+                return (item) => {
+                    return (item.value.indexOf(queryString) === 0);
                 };
             },
         },
@@ -249,5 +264,11 @@
 </script>
 
 <style scoped>
+    .el-input {
+        width: 500px;
+    }
 
+    /*.el-input__inner {*/
+    /*    width: 400px;*/
+    /*}*/
 </style>
