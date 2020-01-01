@@ -41,4 +41,9 @@ public class EnterpriseController {
     public List<Enterprise> getEnterpriseByNameLike(@PathVariable String name) {
         return enterpriseService.getEnterpriseByNameLike(name);
     }
+
+    @GetMapping("/form/all")
+    public List<String> getAllFormOfBusinessEnterprise() {
+        return enterpriseService.getAllFormOfBusinessEnterprise();
+    }
 }

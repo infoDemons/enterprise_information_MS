@@ -88,6 +88,11 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         return enterpriseDao.getAllEnterprises();
     }
 
+    @Override
+    public List<String> getAllFormOfBusinessEnterprise() {
+        return enterpriseDao.getAllFormOfBusinessEnterprise();
+    }
+
     private List<Integer> mapIds(List<Enterprise> enterprises) {
         return enterprises.stream()
                 .map(Enterprise::getEnterpriseId)

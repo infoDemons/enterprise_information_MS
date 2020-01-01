@@ -29,4 +29,7 @@ public interface EnterpriseDao {
     void updateEnterprisePopularityById(@Param("id") Integer id);
 
     void updateEnterprisePopularityByIds(List<Integer> ids);
+
+    @Select("select distinct form_of_business_enterprise from enterprise;")
+    List<String> getAllFormOfBusinessEnterprise();
 }
