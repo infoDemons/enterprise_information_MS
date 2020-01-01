@@ -17,4 +17,8 @@ public interface EnterpriseService {
     List<Enterprise> getEnterprisesByPage(Integer id);
 
     List<Enterprise> getAllEnterprises();
+
+    List<String> getAllFormOfBusinessEnterprise();
+
+    List<Enterprise> getEnterpriseByAdvancedSearch(Integer id, String name, String industry, String form);
 }
