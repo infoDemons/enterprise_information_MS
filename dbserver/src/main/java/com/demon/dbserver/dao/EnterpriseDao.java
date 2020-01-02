@@ -46,4 +46,10 @@ public interface EnterpriseDao {
             "legal_representative = #{legalRepresentative} " +
             "where enterprise_id = #{enterpriseId}")
     void updateEnterprise(Enterprise enterprise);
+
+    @Select("select * from enterprise " +
+            "where popularity > 0 " +
+            "order by popularity desc " +
+            "limit 100")
+    List<Enterprise> getMostPopularEnterprise();
 }

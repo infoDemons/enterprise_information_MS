@@ -25,4 +25,6 @@ public interface EnterpriseService {
     boolean deleteEnterpriseById(Integer id);
 
     boolean updateEnterprise(Enterprise enterprise);
+
+    List<Enterprise> getMostPopularEnterprise();
 }

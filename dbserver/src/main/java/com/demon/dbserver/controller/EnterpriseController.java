@@ -68,4 +68,9 @@ public class EnterpriseController {
             return ResultCode.FAILED;
         }
     }
+
+    @GetMapping("/popularity")
+    public List<Enterprise> getMostPopularEnterprise() {
+        return enterpriseService.getMostPopularEnterprise();
+    }
 }

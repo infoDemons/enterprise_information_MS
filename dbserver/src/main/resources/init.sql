@@ -44,6 +44,7 @@ create table `enterprise`
 );
 
 create index `enterprise_index` on `enterprise` (`enterprise_name`(100), `industry`(100), `popularity`);
+create index `popularity_index` on `enterprise` (`popularity`);
 
 
 drop table if exists `enterprise_information_change`;

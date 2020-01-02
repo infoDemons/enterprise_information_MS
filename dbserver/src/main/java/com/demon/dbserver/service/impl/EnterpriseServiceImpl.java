@@ -153,4 +153,9 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             return false;
         }
     }
+
+    @Override
+    public List<Enterprise> getMostPopularEnterprise() {
+        return enterpriseDao.getMostPopularEnterprise();
+    }
 }
