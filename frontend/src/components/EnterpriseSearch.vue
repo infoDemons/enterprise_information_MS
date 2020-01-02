@@ -111,7 +111,6 @@
         name: "EnterpriseSearch",
         data() {
             return {
-                sss: '',
                 industriesAll: [],
                 formOfBusinessEnterpriseAll: [],
                 enterprises: [],

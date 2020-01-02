@@ -9,9 +9,6 @@
                     <el-menu
                             default-active="0"
                             class="el-menu-vertical-demo" style="background-color: #ececec; margin-top: 5px" router>
-                        <el-menu-item @click="pushRouter('/home/value')">
-                            <span slot="title">价值观管理</span>
-                        </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/enterprise_search')">
                             <span slot="title">企业查询</span>
                         </el-menu-item>
@@ -24,8 +21,14 @@
                         <el-menu-item @click="pushRouter('/home/enterprise_management')">
                             <span slot="title">企业管理</span>
                         </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/value')">
+                            <span slot="title">价值观管理</span>
+                        </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/industry_search')">
-                            <span slot="title">综合查询</span>
+                            <span slot="title">行业分析</span>
+                        </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/enterprise_popularity')">
+                            <span slot="title">热度企业推荐</span>
                         </el-menu-item>
                     </el-menu>
                 </div>
