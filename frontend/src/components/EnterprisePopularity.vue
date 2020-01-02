@@ -1,8 +1,5 @@
 <template>
     <el-container>
-        <el-header style="margin-top: 25px; text-align: left">
-        </el-header>
-
         <el-main class="with_shadow">
             <el-table
                     ref="multipleTable"
