@@ -32,6 +32,12 @@
                         align="left">
                 </el-table-column>
 
+                <el-table-column
+                        prop="popularity"
+                        label="热度"
+                        align="left">
+                </el-table-column>
+
             </el-table>
         </el-main>
 
