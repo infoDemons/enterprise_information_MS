@@ -10,17 +10,15 @@ public interface ChangeService {
 
     List<Change> getChangeByEnterpriseName(String enterpriseName);
 
-    List<Change> getChangeByInformationChangeType(String changeType);
-
     List<Change> getAllChanges();
 
     boolean deleteChange(Integer changeId);
 
-    boolean modifyChange(Integer changeId,
+    boolean modifyChange(Integer enterpriseInformationChangeId,
                             Integer enterpriseId,
                             String enterpriseName,
-                            String changeDate,
-                            String changeType,
+                            String informationChangeDate,
+                            String informationChangeType,
                             String informationBefore,
                             String informationAfter,
                             String createDate);
