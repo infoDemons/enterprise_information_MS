@@ -28,7 +28,7 @@ public interface ChangeDao {
             "information_change_type = #{informationChangeType}, " +
             "information_before = #{informationBefore}, " +
             "information_after = #{informationAfter}, " +
-            "create_date = #{createDate}, " +
+            "create_date = #{createDate} " +
             "where enterprise_information_change_id = #{enterpriseInformationChangeId}")
     void modifyChange(@Param("enterpriseInformationChangeId") Integer enterpriseInformationChangeId,
                             @Param("enterpriseId") Integer enterpriseId,
