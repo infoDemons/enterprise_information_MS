@@ -187,12 +187,12 @@
                 });
             },
             delete_enterprise_change_dialog(row) {
-                this.enterpriseChangeToDelete.id = row.changeId;
+                this.enterpriseChangeToDelete.id = row.enterpriseInformationChangeId;
                 this.dialogDeleteConfirmVisible = true;
             },
             delete_enterprise_change() {
                 let _this = this;
-                this.postRequest("/change/delete", {"changeId": _this.enterpriseChangeToDelete.id}).then(resp => {
+                this.postRequest("/change/delete", {"enterpriseInformationChangeId": _this.enterpriseChangeToDelete.id}).then(resp => {
                     if (resp && resp.status === 200) {
                         if (_this.last_search_direct === true) {
                             _this.search_direct();
@@ -220,11 +220,11 @@
             modify_enterprise_change() {
                 let _this = this;
                 this.postRequest("/change/modify", {
-                        "changeId": _this.form.enterpriseInformationChangeId,
+                        "enterpriseInformationChangeId": _this.form.enterpriseInformationChangeId,
                         "enterpriseId": _this.form.enterpriseId,
                         "enterpriseName": _this.form.enterpriseName,
-                        "changeDate": _this.form.informationChangeDate,
-                        "changeType": _this.form.informationChangeType,
+                        "informationChangeDate": _this.form.informationChangeDate,
+                        "informationChangeType": _this.form.informationChangeType,
                         "informationBefore": _this.form.informationBefore,
                         "informationAfter": _this.form.informationAfter,
                         "createDate": _this.form.createDate,

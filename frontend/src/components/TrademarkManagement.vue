@@ -113,7 +113,7 @@
                 form: {
                     trademarkId: 0,
                     trademarkName: '',
-                    applicantName: '',
+                    applicant: '',
                     trademarkAddress: '',
                     registrationNumber: '',
                     classification: '',
@@ -243,7 +243,7 @@
                 this.postRequest("/trademark/modify", {
                     "trademarkId": _this.form.trademarkId,
                     "trademarkName": _this.form.trademarkName,
-                    "applicantName": _this.form.applicant,
+                    "applicant": _this.form.applicant,
                     "trademarkAddress": _this.form.trademarkAddress,
                     "registrationNumber": _this.form.registrationNumber,
                     "classification": _this.form.classification,
