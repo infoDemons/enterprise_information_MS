@@ -26,8 +26,8 @@ public class ChangeController {
     }
 
     @GetMapping("/change_type/{changeType}")
-    public List<Change> getChangeByChangeType(@PathVariable String changeType) {
-        return changeService.getChangeByChangeType(changeType);
+    public List<Change> getChangeByInformatioChangeType(@PathVariable String changeType) {
+        return changeService.getChangeByInformationChangeType(changeType);
     }
 
     @GetMapping("/all")

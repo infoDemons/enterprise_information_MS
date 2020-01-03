@@ -17,7 +17,7 @@ public interface ChangeDao {
     List<Change> getChangeByEnterpriseName(@Param("enterpriseName") String enterpriseName);
 
     @Select("select * from enterprise_information_change where information_change_type like '%${changeType}%' limit 1000")
-    List<Change> getChangeByChangeType(@Param("changeType") String changeType);
+    List<Change> getChangeByInformationChangeType(@Param("changeType") String changeType);
 
     @Select("select * from enterprise_information_change")
     List<Change> getAllChanges();

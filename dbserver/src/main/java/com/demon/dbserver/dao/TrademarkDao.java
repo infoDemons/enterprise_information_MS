@@ -12,7 +12,7 @@ public interface TrademarkDao {
     List<Trademark> getTrademarkByEnterpriseId(@Param("enterpriseId") Integer enterpriseId);
 
     @Select("select * from trademark where applicant like '%${applicantName}%' limit 1000")
-    List<Trademark> getTrademarkByApplicantName(@Param("applicantName") String applicantName);
+    List<Trademark> getTrademarkByApplicant(@Param("applicantName") String applicantName);
 
     @Select("select * from trademark where trademark_name like '%${trademarkName}%' limit 1000")
     List<Trademark> getTrademarkByTrademarkName(@Param("trademarkName") String trademarkName);

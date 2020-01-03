@@ -22,8 +22,8 @@ public class TrademarkServiceImpl implements TrademarkService {
     }
 
     @Override
-    public List<Trademark> getTrademarkByApplicantName(String applicantName) {
-        return trademarkDao.getTrademarkByApplicantName(applicantName);
+    public List<Trademark> getTrademarkByApplicant(String applicantName) {
+        return trademarkDao.getTrademarkByApplicant(applicantName);
     }
 
     @Override

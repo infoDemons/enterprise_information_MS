@@ -10,7 +10,7 @@ public interface ChangeService {
 
     List<Change> getChangeByEnterpriseName(String enterpriseName);
 
-    List<Change> getChangeByChangeType(String changeType);
+    List<Change> getChangeByInformationChangeType(String changeType);
 
     List<Change> getAllChanges();
 
