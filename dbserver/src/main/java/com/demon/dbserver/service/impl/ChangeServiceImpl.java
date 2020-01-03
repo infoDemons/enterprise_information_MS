@@ -28,8 +28,8 @@ public class ChangeServiceImpl implements ChangeService {
     }
 
     @Override
-    public List<Change> getChangeByChangeType(String changeType) {
-        return changeDao.getChangeByChangeType(changeType);
+    public List<Change> getChangeByInformationChangeType(String changeType) {
+        return changeDao.getChangeByInformationChangeType(changeType);
     }
 
     @Override

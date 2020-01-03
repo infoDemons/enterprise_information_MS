@@ -21,9 +21,9 @@ public class TrademarkController {
         return trademarkService.getTrademarkByEnterpriseId(enterpriseId);
     }
 
-    @GetMapping("/name/{applicantName}")
-    public List<Trademark> getTrademarkByApplicantName(@PathVariable String applicantName) {
-        return trademarkService.getTrademarkByApplicantName(applicantName);
+    @GetMapping("/applicant/{applicantName}")
+    public List<Trademark> getTrademarkByApplicant(@PathVariable String applicantName) {
+        return trademarkService.getTrademarkByApplicant(applicantName);
     }
 
     @GetMapping("/name/{trademarkName}")

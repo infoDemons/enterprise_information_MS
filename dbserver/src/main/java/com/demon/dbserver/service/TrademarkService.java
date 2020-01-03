@@ -8,7 +8,7 @@ public interface TrademarkService {
 
     List<Trademark> getTrademarkByEnterpriseId(Integer enterpriseId);
 
-    List<Trademark> getTrademarkByApplicantName(String applicantName);
+    List<Trademark> getTrademarkByApplicant(String applicantName);
 
     List<Trademark> getTrademarkByTrademarkName(String trademarkName);
 

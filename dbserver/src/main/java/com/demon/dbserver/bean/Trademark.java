@@ -13,7 +13,7 @@ public class Trademark implements Serializable {
 
     private int trademarkId;
     private int enterpriseId;
-    private String applicantName;
+    private String applicant;
     private String trademarkAddress;
     private String trademarkName;
     private int registrationNumber;
@@ -38,12 +38,12 @@ public class Trademark implements Serializable {
         this.enterpriseId = enterpriseId;
     }
 
-    public String getApplicantName() {
-        return applicantName;
+    public String getApplicant() {
+        return applicant;
     }
 
-    public void setApplicantName(String applicantName) {
-        this.applicantName = applicantName;
+    public void setApplicant(String applicant) {
+        this.applicant = applicant;
     }
 
     public String getTrademarkAddress() {
