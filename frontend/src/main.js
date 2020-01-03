@@ -23,16 +23,16 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI);
 
-//
-// router.beforeEach((to, from, next) => {
-//     if (to.fullPath === '/') {
-//         next({
-//             path: '/login',
-//         });
-//     } else {
-//         next();
-//     }
-// });
+
+router.beforeEach((to, from, next) => {
+    if (to.fullPath === '/') {
+        next({
+            path: '/login',
+        });
+    } else {
+        next();
+    }
+});
 
 new Vue({
     render: h => h(App),

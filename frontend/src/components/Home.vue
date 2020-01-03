@@ -21,19 +21,19 @@
                         <el-menu-item @click="pushRouter('/home/change_search')">
                             <span slot="title">变更查询</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/staff_management')">
+                        <el-menu-item @click="pushRouter('/home/staff_management')" v-if="if_is_root">
                             <span slot="title">人员管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/enterprise_management')">
+                        <el-menu-item @click="pushRouter('/home/enterprise_management')" v-if="if_is_root">
                             <span slot="title">企业管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/trademark_management')">
+                        <el-menu-item @click="pushRouter('/home/trademark_management')" v-if="if_is_root">
                             <span slot="title">商标管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/change_management')">
+                        <el-menu-item @click="pushRouter('/home/change_management')" v-if="if_is_root">
                             <span slot="title">变更管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/value')">
+                        <el-menu-item @click="pushRouter('/home/value')" v-if="if_is_root">
                             <span slot="title">价值观管理</span>
                         </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/industry_search')">
@@ -72,6 +72,11 @@
                 values: []
             }
         },
+        computed: {
+            user() {
+                return this.$store.state.user;
+            },
+        },
         methods: {
             loadValues() {
                 let _this = this;
@@ -83,6 +88,10 @@
             },
             pushRouter(path) {
                 this.$router.push(path);
+            },
+            if_is_root() {
+                window.console.log(this.$store.state.user);
+                return this.$store.state.user === 'root';
             }
         },
         created: function () {

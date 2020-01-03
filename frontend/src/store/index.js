@@ -10,11 +10,15 @@ export default new Vuex.Store({
             username: window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).username,
             role: window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).role
         },
-        routes: [],
-        msgList: [],
-        isDotMap: new Map(),
-        currentFriend: {},
-        stomp: null,
-        nfDot: false
+    },
+    mutations: {
+        login(state, user) {
+            state.user = user;
+            window.localStorage.setItem('user', JSON.stringify(user));
+        },
+        logout(state) {
+            window.localStorage.removeItem('user');
+            state.routes = [];
+        }
     }
 });
