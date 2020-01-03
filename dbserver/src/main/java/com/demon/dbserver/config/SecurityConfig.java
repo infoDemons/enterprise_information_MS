@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "**/favicon.ico", "/index.html").permitAll()
+                .antMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "**/favicon.ico", "/index.html", "/signup/**").permitAll()
                 .anyRequest()
                 .authenticated()//其他的路径都是登录后即可访问
                 .and()

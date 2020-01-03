@@ -14,7 +14,10 @@
                      label-position="left">记住密码
         </el-checkbox>
         <el-form-item style="width: 100%">
-            <el-button type="primary" style="width: 100%" @click="submitClick">登录</el-button>
+            <el-button type="primary" style="width: 100%" @click="submitLogin">登录</el-button>
+        </el-form-item>
+        <el-form-item style="width: 100%">
+            <el-button type="primary" style="width: 100%" @click="submitSignUp">登录</el-button>
         </el-form-item>
     </el-form>
 </template>
@@ -37,7 +40,7 @@
             }
         },
         methods: {
-            submitClick: function () {
+            submitLogin: function () {
                 let _this = this;
                 this.loading = true;
                 this.postRequest('/login', {
@@ -53,6 +56,28 @@
                     } else {
                         //失败
                         _this.$alert('登录失败!', '失败!');
+                    }
+                    // eslint-disable-next-line no-unused-vars
+                }, resp=> {
+                    _this.loading = false;
+                    _this.$alert('找不到服务器⊙﹏⊙∥!', '失败!');
+                });
+            },
+            submitSignUp: function () {
+                let _this = this;
+                this.loading = true;
+                this.postRequest('/signup', {
+                    username: this.loginForm.username,
+                    password: this.loginForm.password
+                }).then(resp=> {
+                    _this.loading = false;
+                    const json = resp.data;
+                    window.console.log(json);
+                    if (resp.status === 200) {
+                        _this.$alert('注册成功!', '成功!');
+                    } else {
+                        //失败
+                        _this.$alert('注册失败!', '失败!');
                     }
                     // eslint-disable-next-line no-unused-vars
                 }, resp=> {
