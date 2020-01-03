@@ -87,9 +87,6 @@
 
         <el-dialog title="更改企业变更信息" :visible.sync="dialogModifyFormVisible">
             <el-form>
-                <el-form-item label="企业名称:">
-                    <el-input v-model="form.enterpriseName" autocomplete="off"/>
-                </el-form-item>
                 <el-form-item label="变更日期:">
                     <el-input v-model="form.informationChangeDate" autocomplete="off"/>
                 </el-form-item>
