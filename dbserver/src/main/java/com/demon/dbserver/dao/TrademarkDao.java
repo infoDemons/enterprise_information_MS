@@ -17,7 +17,7 @@ public interface TrademarkDao {
     @Select("select * from trademark where trademark_name like '%${trademarkName}%' limit 1000")
     List<Trademark> getTrademarkByTrademarkName(@Param("trademarkName") String trademarkName);
 
-    @Select("select * from trademark where registration_number = #{registrationNumber}")
+    @Select("select * from trademark where registration_number like '%${registrationNumber}%' limit 1000")
     List<Trademark> getTrademarkByRegistrationNumber(@Param("registrationNumber") Integer registrationNumber);
 
     @Select("select * from trademark")
