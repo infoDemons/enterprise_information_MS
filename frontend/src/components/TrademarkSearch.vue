@@ -136,7 +136,6 @@
                     this.$message({type: 'error', message: '请先输入'});
                     return;
                 }
-                this.trademarkToSearch.name = false;
                 let _this = this;
                 this.getRequest("/trademark/applicant/" + _this.trademarkToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
@@ -157,7 +156,6 @@
                     this.$message({type: 'error', message: '请先输入'});
                     return;
                 }
-                this.trademarkToSearch.name = false;
                 let _this = this;
                 this.getRequest("/trademark/registration/" + _this.trademarkToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
