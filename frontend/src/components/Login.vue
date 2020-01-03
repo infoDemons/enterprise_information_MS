@@ -48,9 +48,8 @@
                     const json = resp.data;
                     window.console.log(json);
                     if (resp.status === 200) {
-                        //成功
-                        // eslint-disable-next-line no-unused-vars
                         _this.$router.replace({path: '/home'});
+                        _this.$store.commit('login', json.obj);
                     } else {
                         //失败
                         _this.$alert('登录失败!', '失败!');
