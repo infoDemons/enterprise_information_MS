@@ -12,12 +12,20 @@ import TrademarkSearch from "@/components/TrademarkSearch";
 import TrademarkManagement from "@/components/TrademarkManagement";
 import EnterpriseChangeSearch from "@/components/EnterpriseChangeSearch";
 import EnterpriseChangeManagement from "@/components/EnterpriseChangeManagement";
+import Login from "@/components/Login";
 
 Vue.use(Router);
 
 export default new Router({
     routes: [
         {
+            path: '/login',
+            name: '',
+            component: Login,
+            hidden: true,
+        },
+        {
+
             path: '/home',
             name: '',
             component: Home,

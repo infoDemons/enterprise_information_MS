@@ -2,6 +2,9 @@
     <el-container class="root_container">
         <el-header>
             <div class="home_title">日出东方 全国企业信息管理系统</div>
+            <div style="margin-right: 10px">
+                <el-button type="warning" size="medium" style="margin-left: 15px" @click="log_out">退出</el-button>
+            </div>
         </el-header>
         <el-container>
             <el-aside width="220px">
@@ -21,19 +24,19 @@
                         <el-menu-item @click="pushRouter('/home/change_search')">
                             <span slot="title">变更查询</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/staff_management')">
+                        <el-menu-item @click="pushRouter('/home/staff_management')" v-if="if_is_root">
                             <span slot="title">人员管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/enterprise_management')">
+                        <el-menu-item @click="pushRouter('/home/enterprise_management')" v-if="if_is_root">
                             <span slot="title">企业管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/trademark_management')">
+                        <el-menu-item @click="pushRouter('/home/trademark_management')" v-if="if_is_root">
                             <span slot="title">商标管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/change_management')">
+                        <el-menu-item @click="pushRouter('/home/change_management')" v-if="if_is_root">
                             <span slot="title">变更管理</span>
                         </el-menu-item>
-                        <el-menu-item @click="pushRouter('/home/value')">
+                        <el-menu-item @click="pushRouter('/home/value')" v-if="if_is_root">
                             <span slot="title">价值观管理</span>
                         </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/industry_search')">
@@ -69,8 +72,14 @@
         name: "Home",
         data() {
             return {
-                values: []
+                values: [],
+                if_is_root: false
             }
+        },
+        computed: {
+            user() {
+                return this.$store.state.user;
+            },
         },
         methods: {
             loadValues() {
@@ -83,10 +92,21 @@
             },
             pushRouter(path) {
                 this.$router.push(path);
+            },
+            init() {
+                window.console.log(this.$store.state.user.role);
+                this.if_is_root = this.$store.state.user.role === 'root';
+            },
+            log_out() {
+                this.$store.commit('logout');
+                this.$router.replace({path: '/login'});
             }
         },
         created: function () {
             this.loadValues();
+        },
+        mounted: function () {
+            this.init();
         }
     }
 </script>
