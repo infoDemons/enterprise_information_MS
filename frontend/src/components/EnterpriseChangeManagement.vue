@@ -6,7 +6,6 @@
                     v-model="enterpriseChangeToSearch.name" style="width: 350px; margin-right: 15px">
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">按企业搜索</el-button>
-            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_type">按变更项目搜索</el-button>
         </el-header>
 
         <el-main class="with_shadow">
@@ -165,27 +164,6 @@
                     }
                 });
             },
-            search_by_type() {
-                if (this.enterpriseChangeToSearch.name === '') {
-                    this.$message({type: 'error', message: '请先输入'});
-                    return;
-                }
-                this.enterpriseChangeToSearch.name = false;
-                let _this = this;
-                this.getRequest("/change/change_type/" + _this.enterpriseChangeToSearch.name).then(resp => {
-                    if (resp && resp.status === 200) {
-                        if (resp.data.length === 0) {
-                            _this.enterpriseChange = [];
-                            _this.$message({type: 'error', message: '没有结果'});
-                        } else if (resp.data.length < 1999) {
-                            _this.enterpriseChange = resp.data;
-                        } else {
-                            _this.enterpriseChange = [];
-                            _this.$message({type: 'error', message: '搜索目标过于泛化 请尝试更精确的搜索'});
-                        }
-                    }
-                });
-            },
             delete_enterprise_change_dialog(row) {
                 this.enterpriseChangeToDelete.id = row.enterpriseInformationChangeId;
                 this.dialogDeleteConfirmVisible = true;
@@ -194,11 +172,7 @@
                 let _this = this;
                 this.postRequest("/change/delete", {"enterpriseInformationChangeId": _this.enterpriseChangeToDelete.id}).then(resp => {
                     if (resp && resp.status === 200) {
-                        if (_this.last_search_direct === true) {
-                            _this.search_direct();
-                        } else {
-                            _this.search_by_type();
-                        }
+                        _this.search_direct();
                         _this.$message({type: 'success', message: '删除成功'});
                     } else {
                         _this.$message({type: 'error', message: '删除失败'});
@@ -231,11 +205,7 @@
                     }
                 ).then(resp => {
                     if (resp && resp.status === 200) {
-                        if (_this.last_search_direct === true) {
-                            _this.search_direct();
-                        } else {
-                            _this.search_by_type();
-                        }
+                        _this.search_direct();
                         _this.$message({type: 'success', message: '更改成功'});
                     } else {
                         _this.$message({type: 'error', message: '更改失败'});
