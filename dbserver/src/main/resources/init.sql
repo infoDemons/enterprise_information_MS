@@ -158,7 +158,7 @@ drop table if exists `user`;
 create table `user`
 (
     `id`       int primary key,
-    `username` text not null unique,
+    `username` text not null,
     `password` text not null,
     `role`     text default null
 );
