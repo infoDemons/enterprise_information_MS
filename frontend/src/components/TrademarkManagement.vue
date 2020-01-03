@@ -70,9 +70,6 @@
 
         <el-dialog title="更改商标详情" :visible.sync="dialogModifyVisible">
             <el-form :model="form">
-                <el-form-item label="商标id:" :label-width="formLabelWidth">
-                    <el-input v-model="form.trademarkId" autocomplete="off"/>
-                </el-form-item>
                 <el-form-item label="商标名称:" :label-width="formLabelWidth">
                     <el-input v-model="form.trademarkName" autocomplete="off"/>
                 </el-form-item>
