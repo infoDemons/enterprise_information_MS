@@ -6,8 +6,10 @@
                     v-model="trademarkToSearch.name" style="width: 350px; margin-right: 15px">
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">按商标搜</el-button>
-            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_applicant">按申请人搜</el-button>
-            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_registration">按注册号搜</el-button>
+            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_applicant">按申请人搜
+            </el-button>
+            <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_registration">按注册号搜
+            </el-button>
         </el-header>
 
         <el-main class="with_shadow">
@@ -21,14 +23,20 @@
                 <el-table-column
                         prop="trademarkId"
                         label="商标id"
-                        width="200"
+                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="trademarkName"
-                        label="商标名称"
+                        label="商标名称(点击可查看商标图)"
+                        width="200"
                         align="left">
+                    <template slot-scope="scope">
+                        <a :href="scope.row.trademarkAddress"
+                           target="_blank"
+                           style="color: #409eff;cursor: pointer">{{scope.row.trademarkName}}</a>
+                    </template>
                 </el-table-column>
 
                 <el-table-column
@@ -189,17 +197,6 @@
                         }
                     }
                 });
-            },
-            itemClick(row) {
-                this.form.trademarkId = row.trademarkId;
-                this.form.trademarkName = row.trademarkName;
-                this.form.applicant = row.applicant;
-                this.form.trademarkAddress = row.trademarkAddress;
-                this.form.registrationNumber = row.registrationNumber;
-                this.form.classification = row.classification;
-                this.form.trademarkStatus = row.trademarkStatus;
-                this.form.trademarkProcess = row.trademarkProcess;
-                this.dialogFormVisible = true;
             },
             delete_trademark_dialog(row) {
                 this.trademarkToDelete.id = row.trademarkId;
