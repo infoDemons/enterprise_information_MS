@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Value from '@/components/Value'
 import Home from '@/components/Home'
 import IndustrySearch from "@/components/IndustrySearch";
@@ -18,12 +17,6 @@ Vue.use(Router);
 
 export default new Router({
     routes: [
-        {
-            path: '/',
-            name: '',
-            component: HelloWorld,
-            hidden: true,
-        },
         {
             path: '/home',
             name: '',
