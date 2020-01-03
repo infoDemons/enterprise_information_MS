@@ -3,7 +3,7 @@
         <el-header style="margin-top: 25px; text-align: left">
             <el-input
                     placeholder="请输入要查询变更信息的企业名称"
-                    v-model="enterpriseChangeToSearch.name" style="width: 200px; margin-right: 15px">
+                    v-model="enterpriseChangeToSearch.name" style="width: 350px; margin-right: 15px">
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">按企业搜索</el-button>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_type">按变更项目搜索</el-button>
@@ -18,7 +18,7 @@
                     max-height="510">
 
                 <el-table-column
-                        prop="changeId"
+                        prop="enterpriseInformationChangeId"
                         label="变更信息id"
                         width="100"
                         align="left">
@@ -38,13 +38,13 @@
                 </el-table-column>
 
                 <el-table-column
-                        prop="changeDate"
+                        prop="informationChangeDate"
                         label="变更日期"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
-                        prop="changeType"
+                        prop="informationChangeType"
                         label="变更项目"
                         align="left">
                 </el-table-column>
@@ -92,10 +92,10 @@
                     <el-input v-model="form.enterpriseName" autocomplete="off"/>
                 </el-form-item>
                 <el-form-item label="变更日期:">
-                    <el-input v-model="form.changeDate" autocomplete="off"/>
+                    <el-input v-model="form.informationChangeDate" autocomplete="off"/>
                 </el-form-item>
                 <el-form-item label="变更项目:">
-                    <el-input v-model="form.changeType" autocomplete="off"/>
+                    <el-input v-model="form.informationChangeType" autocomplete="off"/>
                 </el-form-item>
                 <el-form-item label="变更前:">
                     <el-input v-model="form.informationBefore" autocomplete="off"/>
@@ -127,11 +127,11 @@
                 dialogDeleteConfirmVisible: false,
                 dialogModifyFormVisible: false,
                 form: {
-                    changeId: '',
+                    enterpriseInformationChangeId: '',
                     enterpriseId: '',
                     enterpriseName: '',
-                    changeDate: '',
-                    changeType: '',
+                    informationChangeDate: '',
+                    informationChangeType: '',
                     informationBefore: '',
                     informationAfter: '',
                     createDate: '',
@@ -207,11 +207,11 @@
                 });
             },
             modify_enterprise_change_dialog(row) {
-                this.form.changeId = row.changeId;
+                this.form.enterpriseInformationChangeId = row.enterpriseInformationChangeId;
                 this.form.enterpriseId = row.enterpriseId;
                 this.form.enterpriseName = row.enterpriseName;
-                this.form.changeDate = row.changeDate;
-                this.form.changeType = row.changeType;
+                this.form.informationChangeDate = row.informationChangeDate;
+                this.form.informationChangeType = row.informationChangeType;
                 this.form.informationBefore = row.informationBefore;
                 this.form.informationAfter = row.informationAfter;
                 this.form.createDate = row.createDate;
@@ -220,11 +220,11 @@
             modify_enterprise_change() {
                 let _this = this;
                 this.postRequest("/change/modify", {
-                        "changeId": _this.form.changeId,
+                        "changeId": _this.form.enterpriseInformationChangeId,
                         "enterpriseId": _this.form.enterpriseId,
                         "enterpriseName": _this.form.enterpriseName,
-                        "changeDate": _this.form.changeDate,
-                        "changeType": _this.form.changeType,
+                        "changeDate": _this.form.informationChangeDate,
+                        "changeType": _this.form.informationChangeType,
                         "informationBefore": _this.form.informationBefore,
                         "informationAfter": _this.form.informationAfter,
                         "createDate": _this.form.createDate,

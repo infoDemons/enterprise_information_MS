@@ -32,7 +32,7 @@
                 </el-table-column>
 
                 <el-table-column
-                        prop="applicantName"
+                        prop="applicant"
                         label="申请人"
                         align="left">
                 </el-table-column>
@@ -77,7 +77,7 @@
                     <el-input v-model="form.trademarkName" autocomplete="off"/>
                 </el-form-item>
                 <el-form-item label="申请人:" :label-width="formLabelWidth">
-                    <el-input v-model="form.applicantName" autocomplete="off"/>
+                    <el-input v-model="form.applicant" autocomplete="off"/>
                 </el-form-item>
                 <el-form-item label="地址:" :label-width="formLabelWidth">
                     <el-input v-model="form.trademarkAddress" autocomplete="off"/>
@@ -198,7 +198,7 @@
             itemClick(row) {
                 this.form.trademarkId = row.trademarkId;
                 this.form.trademarkName = row.trademarkName;
-                this.form.applicantName = row.applicantName;
+                this.form.applicant = row.applicant;
                 this.form.trademarkAddress = row.trademarkAddress;
                 this.form.registrationNumber = row.registrationNumber;
                 this.form.classification = row.classification;
@@ -230,7 +230,7 @@
             modify_trademark_dialog(row) {
                 this.form.trademarkId = row.trademarkId;
                 this.form.trademarkName = row.trademarkName;
-                this.form.applicantName = row.applicantName;
+                this.form.applicant = row.applicant;
                 this.form.trademarkAddress = row.trademarkAddress;
                 this.form.registrationNumber = row.registrationNumber;
                 this.form.classification = row.classification;
@@ -243,7 +243,7 @@
                 this.postRequest("/trademark/modify", {
                     "trademarkId": _this.form.trademarkId,
                     "trademarkName": _this.form.trademarkName,
-                    "applicantName": _this.form.applicantName,
+                    "applicantName": _this.form.applicant,
                     "trademarkAddress": _this.form.trademarkAddress,
                     "registrationNumber": _this.form.registrationNumber,
                     "classification": _this.form.classification,

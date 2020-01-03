@@ -3,7 +3,7 @@
         <el-header style="margin-top: 25px; text-align: left">
             <el-input
                     placeholder="请输入要搜索的公司名称"
-                    v-model="enterpriseToSearch.name" style="width: 200px; margin-right: 15px">
+                    v-model="enterpriseToSearch.name" style="width: 350px; margin-right: 15px">
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">精确搜索</el-button>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_fuzzy">模糊搜索</el-button>

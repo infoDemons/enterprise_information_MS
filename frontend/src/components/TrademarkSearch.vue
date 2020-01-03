@@ -32,7 +32,7 @@
                 </el-table-column>
 
                 <el-table-column
-                        prop="applicantName"
+                        prop="applicant"
                         label="申请人"
                         align="left">
                 </el-table-column>
@@ -61,7 +61,7 @@
                     <el-input v-model="form.trademarkName" autocomplete="off"/>
                 </el-form-item>
                 <el-form-item label="申请人:" :label-width="formLabelWidth">
-                    <el-input v-model="form.applicantName" autocomplete="off"/>
+                    <el-input v-model="form.applicant" autocomplete="off"/>
                 </el-form-item>
                 <el-form-item label="地址:" :label-width="formLabelWidth">
                     <el-input v-model="form.trademarkAddress" autocomplete="off"/>
@@ -97,7 +97,7 @@
                 form: {
                     trademarkId: 0,
                     trademarkName: '',
-                    applicantName: '',
+                    applicant: '',
                     trademarkAddress: '',
                     registrationNumber: '',
                     classification: '',
@@ -136,7 +136,7 @@
                     this.$message({type: 'error', message: '请先输入'});
                     return;
                 }
-                this.trademarkToSearch.by_name = false;
+                this.trademarkToSearch.name = false;
                 let _this = this;
                 this.getRequest("/trademark/applicant/" + _this.trademarkToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
@@ -157,7 +157,7 @@
                     this.$message({type: 'error', message: '请先输入'});
                     return;
                 }
-                this.trademarkToSearch.by_name = false;
+                this.trademarkToSearch.name = false;
                 let _this = this;
                 this.getRequest("/trademark/registration/" + _this.trademarkToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
@@ -176,7 +176,7 @@
             itemClick(row) {
                 this.form.trademarkId = row.trademarkId;
                 this.form.trademarkName = row.trademarkName;
-                this.form.applicantName = row.applicantName;
+                this.form.applicant = row.applicant;
                 this.form.trademarkAddress = row.trademarkAddress;
                 this.form.registrationNumber = row.registrationNumber;
                 this.form.classification = row.classification;

@@ -3,7 +3,7 @@
         <el-header style="margin-top: 25px; text-align: left">
             <el-input
                     placeholder="请输入要查询变更信息的企业名称"
-                    v-model="enterpriseChangeToSearch.name" style="width: 200px; margin-right: 15px">
+                    v-model="enterpriseChangeToSearch.name" style="width: 350px; margin-right: 15px">
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">按企业搜索</el-button>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_by_type">按变更项目搜索</el-button>
@@ -18,7 +18,7 @@
                     max-height="510">
 
                 <el-table-column
-                        prop="changeId"
+                        prop="enterpriseInformationChangeId"
                         label="变更信息id"
                         width="100"
                         align="left">
@@ -38,13 +38,13 @@
                 </el-table-column>
 
                 <el-table-column
-                        prop="changeDate"
+                        prop="informationChangeDate"
                         label="变更日期"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
-                        prop="changeType"
+                        prop="informationChangeType"
                         label="变更项目"
                         align="left">
                 </el-table-column>
