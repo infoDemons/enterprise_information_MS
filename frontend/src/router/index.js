@@ -9,6 +9,10 @@ import StaffSearch from '@/components/StaffSearch'
 import StaffManagement from "../components/StaffManagement";
 import EnterpriseManagement from "@/components/EnterpriseManagement";
 import EnterprisePopularity from "@/components/EnterprisePopularity";
+import TrademarkSearch from "@/components/TrademarkSearch";
+import TrademarkManagement from "@/components/TrademarkManagement";
+import EnterpriseChangeSearch from "@/components/EnterpriseChangeSearch";
+import EnterpriseChangeManagement from "@/components/EnterpriseChangeManagement";
 
 Vue.use(Router);
 
@@ -44,7 +48,7 @@ export default new Router({
                 },
                 {
                     path: 'enterprise_management',
-                    name: '搜索企业',
+                    name: '管理企业',
                     component: EnterpriseManagement,
                     meta: {
                         keepAlive: true
@@ -78,6 +82,38 @@ export default new Router({
                     path: 'industry_search',
                     name: '综合查询',
                     component: IndustrySearch,
+                    meta: {
+                        keepAlive: true
+                    }
+                },
+                {
+                    path: 'trademark_search',
+                    name: '商标查询',
+                    component: TrademarkSearch,
+                    meta: {
+                        keepAlive: true
+                    }
+                },
+                {
+                    path: 'trademark_management',
+                    name: '商标管理',
+                    component: TrademarkManagement,
+                    meta: {
+                        keepAlive: true
+                    }
+                },
+                {
+                    path: 'change_search',
+                    name: '查询变更信息',
+                    component: EnterpriseChangeSearch,
+                    meta: {
+                        keepAlive: true
+                    }
+                },
+                {
+                    path: 'change_management',
+                    name: '商标管理',
+                    component: EnterpriseChangeManagement,
                     meta: {
                         keepAlive: true
                     }

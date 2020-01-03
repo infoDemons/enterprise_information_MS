@@ -15,11 +15,23 @@
                         <el-menu-item @click="pushRouter('/home/staff_search')">
                             <span slot="title">人员查询</span>
                         </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/trademark_search')">
+                            <span slot="title">商标查询</span>
+                        </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/change_search')">
+                            <span slot="title">变更查询</span>
+                        </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/staff_management')">
                             <span slot="title">人员管理</span>
                         </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/enterprise_management')">
                             <span slot="title">企业管理</span>
+                        </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/trademark_management')">
+                            <span slot="title">商标管理</span>
+                        </el-menu-item>
+                        <el-menu-item @click="pushRouter('/home/change_management')">
+                            <span slot="title">变更管理</span>
                         </el-menu-item>
                         <el-menu-item @click="pushRouter('/home/value')">
                             <span slot="title">价值观管理</span>

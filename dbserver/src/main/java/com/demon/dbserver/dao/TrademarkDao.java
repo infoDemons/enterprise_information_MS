@@ -32,7 +32,7 @@ public interface TrademarkDao {
             "registration_number = #{registrationNumber}, " +
             "classification = #{classification}, " +
             "trademark_status = #{trademarkStatus}, " +
-            "trademark_process = #{trademarkProcess}, " +
+            "trademark_process = #{trademarkProcess} " +
             "where trademark_id = #{trademarkId}")
     void modifyTrademark(@Param("trademarkId") Integer trademarkId,
                             @Param("applicant") String applicantName,
