@@ -2,6 +2,9 @@
     <el-container class="root_container">
         <el-header>
             <div class="home_title">日出东方 全国企业信息管理系统</div>
+            <div style="margin-right: 10px">
+                <el-button type="warning" size="medium" style="margin-left: 15px" @click="log_out">退出</el-button>
+            </div>
         </el-header>
         <el-container>
             <el-aside width="220px">
@@ -69,7 +72,8 @@
         name: "Home",
         data() {
             return {
-                values: []
+                values: [],
+                if_is_root: false
             }
         },
         computed: {
@@ -89,13 +93,20 @@
             pushRouter(path) {
                 this.$router.push(path);
             },
-            if_is_root() {
-                window.console.log(this.$store.state.user);
-                return this.$store.state.user === 'root';
+            init() {
+                window.console.log(this.$store.state.user.role);
+                this.if_is_root = this.$store.state.user.role === 'root';
+            },
+            log_out() {
+                this.$store.commit('logout');
+                this.$router.replace({path: '/login'});
             }
         },
         created: function () {
             this.loadValues();
+        },
+        mounted: function () {
+            this.init();
         }
     }
 </script>
