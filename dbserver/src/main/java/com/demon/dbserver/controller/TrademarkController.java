@@ -21,9 +21,9 @@ public class TrademarkController {
         return trademarkService.getTrademarkByEnterpriseId(enterpriseId);
     }
 
-    @GetMapping("/applicant/{applicantName}")
-    public List<Trademark> getTrademarkByApplicant(@PathVariable String applicantName) {
-        return trademarkService.getTrademarkByApplicant(applicantName);
+    @GetMapping("/applicant/{applicant}")
+    public List<Trademark> getTrademarkByApplicant(@PathVariable String applicant) {
+        return trademarkService.getTrademarkByApplicant(applicant);
     }
 
     @GetMapping("/name/{trademarkName}")
@@ -52,14 +52,14 @@ public class TrademarkController {
 
     @PostMapping("/modify")
     public ResultCode modifyTrademark(Integer trademarkId,
-                                      String applicantName,
+                                      String applicant,
                                       String trademarkAddress,
                                       String trademarkName,
                                       Integer registrationNumber,
                                       String classification,
                                       String trademarkStatus,
                                       String trademarkProcess ) {
-        if (trademarkService.modifyTrademark(trademarkId, applicantName, trademarkAddress, trademarkName, registrationNumber, classification, trademarkStatus, trademarkProcess)) {
+        if (trademarkService.modifyTrademark(trademarkId, applicant, trademarkAddress, trademarkName, registrationNumber, classification, trademarkStatus, trademarkProcess)) {
             return ResultCode.SUCCESS;
         } else {
             return ResultCode.FAILED;

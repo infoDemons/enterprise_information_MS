@@ -11,8 +11,8 @@ public interface TrademarkDao {
     @Select("select * from trademark where enterprise_id = #{enterpriseId}")
     List<Trademark> getTrademarkByEnterpriseId(@Param("enterpriseId") Integer enterpriseId);
 
-    @Select("select * from trademark where applicant like '%${applicantName}%' limit 1000")
-    List<Trademark> getTrademarkByApplicant(@Param("applicantName") String applicantName);
+    @Select("select * from trademark where applicant like '%${applicant}%' limit 1000")
+    List<Trademark> getTrademarkByApplicant(@Param("applicant") String applicant);
 
     @Select("select * from trademark where trademark_name like '%${trademarkName}%' limit 1000")
     List<Trademark> getTrademarkByTrademarkName(@Param("trademarkName") String trademarkName);
@@ -27,7 +27,7 @@ public interface TrademarkDao {
     void deleteTrademark(@Param("trademarkId") Integer trademarkId);
 
     @Update("update trademark set trademark_name = #{trademarkName}, " +
-            "applicant = #{applicantName}, " +
+            "applicant = #{applicant}, " +
             "trademark_address = #{trademarkAddress}, " +
             "registration_number = #{registrationNumber}, " +
             "classification = #{classification}, " +
@@ -35,7 +35,7 @@ public interface TrademarkDao {
             "trademark_process = #{trademarkProcess}, " +
             "where trademark_id = #{trademarkId}")
     void modifyTrademark(@Param("trademarkId") Integer trademarkId,
-                            @Param("applicantName") String applicantName,
+                            @Param("applicant") String applicantName,
                             @Param("trademarkAddress") String trademarkAddress,
                             @Param("trademarkName") String trademarkName,
                             @Param("registrationNumber") Integer registrationNumber,

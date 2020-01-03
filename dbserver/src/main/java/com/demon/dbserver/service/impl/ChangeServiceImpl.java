@@ -28,19 +28,14 @@ public class ChangeServiceImpl implements ChangeService {
     }
 
     @Override
-    public List<Change> getChangeByInformationChangeType(String changeType) {
-        return changeDao.getChangeByInformationChangeType(changeType);
-    }
-
-    @Override
     public List<Change> getAllChanges() {
         return changeDao.getAllChanges();
     }
 
     @Override
-    public boolean deleteChange(Integer changeId) {
+    public boolean deleteChange(Integer enterpriseInformationChangeId) {
         try {
-            changeDao.deleteChange(changeId);
+            changeDao.deleteChange(enterpriseInformationChangeId);
             return true;
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -49,16 +44,16 @@ public class ChangeServiceImpl implements ChangeService {
     }
 
     @Override
-    public boolean modifyChange(Integer changeId,
+    public boolean modifyChange(Integer enterpriseInformationChangeId,
                             Integer enterpriseId,
                             String enterpriseName,
-                            String changeDate,
-                            String changeType,
+                            String informationChangeDate,
+                            String informationChangeType,
                             String informationBefore,
                             String informationAfter,
                             String createDate) {
         try {
-            changeDao.modifyChange(changeId, enterpriseId, enterpriseName, changeDate, changeType, informationBefore, informationAfter, createDate);
+            changeDao.modifyChange(enterpriseInformationChangeId, enterpriseId, enterpriseName, informationChangeDate, informationChangeType, informationBefore, informationAfter, createDate);
             return true;
         } catch (Exception exception) {
             exception.printStackTrace();

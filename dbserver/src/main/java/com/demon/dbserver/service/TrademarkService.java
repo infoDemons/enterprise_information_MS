@@ -8,7 +8,7 @@ public interface TrademarkService {
 
     List<Trademark> getTrademarkByEnterpriseId(Integer enterpriseId);
 
-    List<Trademark> getTrademarkByApplicant(String applicantName);
+    List<Trademark> getTrademarkByApplicant(String applicant);
 
     List<Trademark> getTrademarkByTrademarkName(String trademarkName);
 
@@ -18,7 +18,7 @@ public interface TrademarkService {
 
     boolean deleteTrademark(Integer trademarkId);
 
-    boolean modifyTrademark(Integer trademarkId, String applicantName, String trademarkAddress, String trademarkName, Integer registrationNumber, String classification, String trademarkStatus, String trademarkProcess );
+    boolean modifyTrademark(Integer trademarkId, String applicant, String trademarkAddress, String trademarkName, Integer registrationNumber, String classification, String trademarkStatus, String trademarkProcess );
 
 }
 

@@ -25,19 +25,14 @@ public class ChangeController {
         return changeService.getChangeByEnterpriseName(enterpriseName);
     }
 
-    @GetMapping("/change_type/{changeType}")
-    public List<Change> getChangeByInformatioChangeType(@PathVariable String changeType) {
-        return changeService.getChangeByInformationChangeType(changeType);
-    }
-
     @GetMapping("/all")
     public List<Change> getAllChanges() {
         return changeService.getAllChanges();
     }
 
     @PostMapping("/delete")
-    public ResultCode deleteChange(Integer changeId) {
-        if(changeService.deleteChange(changeId)) {
+    public ResultCode deleteChange(Integer enterpriseInformationChangeId) {
+        if(changeService.deleteChange(enterpriseInformationChangeId)) {
             return ResultCode.SUCCESS;
         } else {
             return ResultCode.FAILED;
@@ -45,15 +40,15 @@ public class ChangeController {
     }
 
     @PostMapping("/modify")
-    public ResultCode modifyChange(Integer changeId,
+    public ResultCode modifyChange(Integer enterpriseInformationChangeId,
                             Integer enterpriseId,
                             String enterpriseName,
-                            String changeDate,
-                            String changeType,
+                            String informationChangeDate,
+                            String informationChangeType,
                             String informationBefore,
                             String informationAfter,
                             String createDate) {
-        if (changeService.modifyChange(changeId, enterpriseId, enterpriseName, changeDate, changeType, informationBefore, informationAfter, createDate)) {
+        if (changeService.modifyChange(enterpriseInformationChangeId, enterpriseId, enterpriseName, informationChangeDate, informationChangeType, informationBefore, informationAfter, createDate)) {
             return ResultCode.SUCCESS;
         } else {
             return ResultCode.FAILED;

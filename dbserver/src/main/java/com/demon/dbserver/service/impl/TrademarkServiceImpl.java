@@ -22,8 +22,8 @@ public class TrademarkServiceImpl implements TrademarkService {
     }
 
     @Override
-    public List<Trademark> getTrademarkByApplicant(String applicantName) {
-        return trademarkDao.getTrademarkByApplicant(applicantName);
+    public List<Trademark> getTrademarkByApplicant(String applicant) {
+        return trademarkDao.getTrademarkByApplicant(applicant);
     }
 
     @Override
@@ -51,9 +51,9 @@ public class TrademarkServiceImpl implements TrademarkService {
     }
 
     @Override
-    public boolean modifyTrademark(Integer trademarkId, String applicantName, String trademarkAddress, String trademarkName, Integer registrationNumber, String classification, String trademarkStatus, String trademarkProcess ) {
+    public boolean modifyTrademark(Integer trademarkId, String applicant, String trademarkAddress, String trademarkName, Integer registrationNumber, String classification, String trademarkStatus, String trademarkProcess ) {
         try {
-            trademarkDao.modifyTrademark(trademarkId, applicantName, trademarkAddress, trademarkName, registrationNumber, classification, trademarkStatus, trademarkProcess );
+            trademarkDao.modifyTrademark(trademarkId, applicant, trademarkAddress, trademarkName, registrationNumber, classification, trademarkStatus, trademarkProcess );
             return true;
         } catch (Exception exception) {
             exception.printStackTrace();
