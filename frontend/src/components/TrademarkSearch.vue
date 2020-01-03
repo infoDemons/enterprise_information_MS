@@ -21,28 +21,31 @@
                 <el-table-column
                         prop="trademarkId"
                         label="商标id"
-                        width="100"
+                        width="200"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="trademarkName"
                         label="商标名称"
-                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="applicantName"
                         label="申请人"
-                        width="150"
                         align="left">
                 </el-table-column>
 
                 <el-table-column
                         prop="registrationNumber"
                         label="注册号"
-                        width="150"
+                        align="left">
+                </el-table-column>
+
+                <el-table-column
+                        prop="trademarkStatus"
+                        label="状态"
                         align="left">
                 </el-table-column>
 
@@ -114,7 +117,7 @@
                     return;
                 }
                 let _this = this;
-                this.getRequest("/trademark/trademarkName/" + _this.trademarkToSearch.name).then(resp => {
+                this.getRequest("/trademark/name/" + _this.trademarkToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
                         if (resp.data.length === 0) {
                             _this.trademark = [];
@@ -135,7 +138,7 @@
                 }
                 this.trademarkToSearch.by_name = false;
                 let _this = this;
-                this.getRequest("/trademark/applicantName/" + _this.trademarkToSearch.name).then(resp => {
+                this.getRequest("/trademark/applicant/" + _this.trademarkToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
                         if (resp.data.length === 0) {
                             _this.trademark = [];

@@ -91,7 +91,7 @@
                     return;
                 }
                 let _this = this;
-                this.getRequest("/change/enterpriseName/" + _this.enterpriseChangeToSearch.name).then(resp => {
+                this.getRequest("/change/enterprise_name/" + _this.enterpriseChangeToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
                         if (resp.data.length === 0) {
                             _this.enterpriseChange = [];
@@ -113,7 +113,7 @@
                 }
                 this.enterpriseChangeToSearch.name = false;
                 let _this = this;
-                this.getRequest("/change/changeType/" + _this.enterpriseChangeToSearch.name).then(resp => {
+                this.getRequest("/change/change_type/" + _this.enterpriseChangeToSearch.name).then(resp => {
                     if (resp && resp.status === 200) {
                         if (resp.data.length === 0) {
                             _this.enterpriseChange = [];
