@@ -15,17 +15,17 @@ public class ChangeController {
     @Autowired
     private ChangeService changeService;
 
-    @GetMapping("/change/{enterpriseId}")
+    @GetMapping("/enterprise_id/{enterpriseId}")
     public List<Change> getChangeByEnterpriseId(@PathVariable Integer enterpriseId) {
         return changeService.getChangeByEnterpriseId(enterpriseId);
     }
 
-    @GetMapping("/change/{enterpriseName}")
+    @GetMapping("/enterprise_name/{enterpriseName}")
     public List<Change> getChangeByEnterpriseName(@PathVariable String enterpriseName) {
         return changeService.getChangeByEnterpriseName(enterpriseName);
     }
 
-    @GetMapping("/change/{changeType}")
+    @GetMapping("/change_type/{changeType}")
     public List<Change> getChangeByChangeType(@PathVariable String changeType) {
         return changeService.getChangeByChangeType(changeType);
     }

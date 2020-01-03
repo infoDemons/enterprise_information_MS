@@ -10,21 +10,21 @@ import java.io.Serializable;
 
 public class Change implements Serializable {
 
-    private int changeId;
+    private int enterpriseInformationChangeId;
     private int enterpriseId;
     private String enterpriseName;
-    private String changeDate;
-    private String changeType;
+    private String informationChangeDate;
+    private String informationChangeType;
     private String informationBefore;
     private String informationAfter;
     private String createDate;
 
-    public int getChangeId() {
-        return changeId;
+    public int getEnterpriseInformationChangeId() {
+        return enterpriseInformationChangeId;
     }
 
-    public void setChangeId(int id) {
-        this.changeId = id;
+    public void setEnterpriseInformationChangeId(int id) {
+        this.enterpriseInformationChangeId = id;
     }
 
     public int getEnterpriseId() {
@@ -43,20 +43,20 @@ public class Change implements Serializable {
         this.enterpriseName = enterpriseName;
     }
 
-    public String getChangeDate() {
-        return changeDate;
+    public String getInformationChangeDate() {
+        return informationChangeDate;
     }
 
-    public void setChangeDate(String changeDate) {
-        this.changeDate = changeDate;
+    public void setInformationChangeDate(String informationChangeDate) {
+        this.informationChangeDate = informationChangeDate;
     }
 
-    public String getChangeType() {
-        return changeType;
+    public String getInformationChangeType() {
+        return informationChangeType;
     }
 
-    public void setChangeType(String changeType) {
-        this.changeType = changeType;
+    public void setInformationChangeType(String informationChangeType) {
+        this.informationChangeType = informationChangeType;
     }
 
     public String getInformationBefore() {
