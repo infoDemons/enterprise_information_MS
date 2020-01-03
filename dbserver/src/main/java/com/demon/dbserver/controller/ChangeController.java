@@ -25,7 +25,7 @@ public class ChangeController {
         return changeService.getChangeByEnterpriseName(enterpriseName);
     }
 
-    @GetMapping("/change/{changeDate}")
+    @GetMapping("/change/{changeType}")
     public List<Change> getChangeByChangeType(@PathVariable String changeType) {
         return changeService.getChangeByChangeType(changeType);
     }
