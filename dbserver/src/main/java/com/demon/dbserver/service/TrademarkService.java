@@ -16,6 +16,10 @@ public interface TrademarkService {
 
     List<Trademark> getAllTrademarks();
 
+    int getMaxTrademarkId();
+
+    boolean addTrademark(Trademark trademark);
+
     boolean deleteTrademark(Integer trademarkId);
 
     boolean modifyTrademark(Integer trademarkId, String applicant, String trademarkAddress, String trademarkName, Integer registrationNumber, String classification, String trademarkStatus, String trademarkProcess );

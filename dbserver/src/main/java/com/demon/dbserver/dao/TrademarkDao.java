@@ -23,6 +23,13 @@ public interface TrademarkDao {
     @Select("select * from trademark")
     List<Trademark> getAllTrademarks();
 
+    @Select("select max(trademark_id) from trademark")
+    int getMaxTrademarkId();
+
+    @Insert("insert into trademark values (#{trademarkId}, #{enterpriseId}, #{applicant}, #{trademarkAddress}, #{trademarkName}, #{registrationNumber}, #{classification}, #{trademarkStatus}, #{trademarkProcess})")
+    void addTrademark(Trademark trademark);
+
+
     @Delete("delete from trademark where trademark_id = #{trademarkId} ")
     void deleteTrademark(@Param("trademarkId") Integer trademarkId);
 

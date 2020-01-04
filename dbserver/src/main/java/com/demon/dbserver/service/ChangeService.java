@@ -12,7 +12,11 @@ public interface ChangeService {
 
     List<Change> getAllChanges();
 
+    int getMaxEnterpriseInformationChangeId();
+
     boolean deleteChange(Integer changeId);
+
+    boolean addChange(Change change);
 
     boolean modifyChange(Integer enterpriseInformationChangeId,
                             Integer enterpriseId,

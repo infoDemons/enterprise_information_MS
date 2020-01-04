@@ -33,6 +33,22 @@ public class ChangeServiceImpl implements ChangeService {
     }
 
     @Override
+    public int getMaxEnterpriseInformationChangeId() {
+        return changeDao.getMaxEnterpriseInformationChangeId();
+    }
+
+    @Override
+    public boolean addChange(Change change) {
+        try {
+            changeDao.addChange(change);
+            return true;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public boolean deleteChange(Integer enterpriseInformationChangeId) {
         try {
             changeDao.deleteChange(enterpriseInformationChangeId);

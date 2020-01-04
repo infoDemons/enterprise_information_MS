@@ -81,7 +81,7 @@ export default new Router({
                 },
                 {
                     path: 'industry_search',
-                    name: '综合查询',
+                    name: '行业分析',
                     component: IndustrySearch,
                     meta: {
                         keepAlive: true
@@ -113,7 +113,7 @@ export default new Router({
                 },
                 {
                     path: 'change_management',
-                    name: '商标管理',
+                    name: '变更管理',
                     component: EnterpriseChangeManagement,
                     meta: {
                         keepAlive: true
