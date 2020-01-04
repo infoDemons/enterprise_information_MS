@@ -8,8 +8,6 @@ import java.util.List;
 @Mapper
 public interface ChangeDao {
 
-
-
     @Select("select * from enterprise_information_change where enterprise_id = #{enterpriseId}")
     List<Change> getChangeByEnterpriseId(@Param("enterpriseId") Integer enterpriseId);
 
@@ -19,7 +17,8 @@ public interface ChangeDao {
     @Select("select max(enterprise_information_change_id) from enterprise_information_change")
     int getMaxEnterpriseInformationChangeId();
 
-    @Insert("insert into enterprise_information_change values (#{enterpriseInformationChangeId}, #{enterpriseId}, #{enterpriseName}, #{informationChangeDate}, #{informationChangeType}, #{informationBefore}, #{informationAfter}, #{createDate})")
+    @Insert("insert into enterprise_information_change (`enterprise_id`,`enterprise_name`,`information_change_date`, `information_change_type`,`information_before`,`information_after`,`create_date`) values " +
+            "(#{enterpriseId}, #{enterpriseName}, #{informationChangeDate}, #{informationChangeType}, #{informationBefore}, #{informationAfter}, #{createDate})")
     void addChange(Change change);
 
 
@@ -38,13 +37,13 @@ public interface ChangeDao {
             "create_date = #{createDate} " +
             "where enterprise_information_change_id = #{enterpriseInformationChangeId}")
     void modifyChange(@Param("enterpriseInformationChangeId") Integer enterpriseInformationChangeId,
-                            @Param("enterpriseId") Integer enterpriseId,
-                            @Param("enterpriseName") String enterpriseName,
-                            @Param("informationChangeDate") String informationChangeDate,
-                            @Param("informationChangeType") String informationChangeType,
-                            @Param("informationBefore") String informationBefore,
-                            @Param("informationAfter") String informationAfter,
-                            @Param("createDate") String createDate);
+                      @Param("enterpriseId") Integer enterpriseId,
+                      @Param("enterpriseName") String enterpriseName,
+                      @Param("informationChangeDate") String informationChangeDate,
+                      @Param("informationChangeType") String informationChangeType,
+                      @Param("informationBefore") String informationBefore,
+                      @Param("informationAfter") String informationAfter,
+                      @Param("createDate") String createDate);
 
 
 }

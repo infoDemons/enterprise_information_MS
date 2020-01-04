@@ -6,6 +6,7 @@
                     v-model="enterpriseChangeToSearch.name" style="width: 350px; margin-right: 15px">
             </el-input>
             <el-button type="info" size="medium" style="margin-left: 15px" @click="search_direct">按企业搜索</el-button>
+            <el-button type="primary" size="medium" style="margin-left: 15px" @click="addFormVisible=true">增加变更</el-button>
         </el-header>
 
         <el-main class="with_shadow">
@@ -108,6 +109,32 @@
             </div>
         </el-dialog>
 
+        <el-dialog title="增加企业变更信息" :visible.sync="addFormVisible">
+            <el-form>
+                <el-form-item label="企业id:">
+                    <el-input v-model="form2.enterpriseId" autocomplete="off"/>
+                </el-form-item>
+                <el-form-item label="变更日期:">
+                    <el-input v-model="form2.informationChangeDate" autocomplete="off"/>
+                </el-form-item>
+                <el-form-item label="变更项目:">
+                    <el-input v-model="form2.informationChangeType" autocomplete="off"/>
+                </el-form-item>
+                <el-form-item label="变更前:">
+                    <el-input v-model="form2.informationBefore" autocomplete="off"/>
+                </el-form-item>
+                <el-form-item label="变更后:">
+                    <el-input v-model="form2.informationAfter" autocomplete="off"/>
+                </el-form-item>
+                <el-form-item label="创建日期:">
+                    <el-input v-model="form2.createDate" autocomplete="off"/>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="add_change">确定</el-button>
+            </div>
+        </el-dialog>
+
     </el-container>
 </template>
 
@@ -122,7 +149,18 @@
                 },
                 dialogDeleteConfirmVisible: false,
                 dialogModifyFormVisible: false,
+                addFormVisible: false,
                 form: {
+                    enterpriseInformationChangeId: '',
+                    enterpriseId: '',
+                    enterpriseName: '',
+                    informationChangeDate: '',
+                    informationChangeType: '',
+                    informationBefore: '',
+                    informationAfter: '',
+                    createDate: '',
+                },
+                form2: {
                     enterpriseInformationChangeId: '',
                     enterpriseId: '',
                     enterpriseName: '',
@@ -208,6 +246,26 @@
                         _this.$message({type: 'error', message: '更改失败'});
                     }
                     _this.dialogModifyFormVisible = false;
+                });
+            },
+            add_change() {
+                let _this = this;
+                this.postRequest("/change/add", {
+                        "enterpriseId": _this.form2.enterpriseId,
+                        "informationChangeDate": _this.form2.informationChangeDate,
+                        "informationChangeType": _this.form2.informationChangeType,
+                        "informationBefore": _this.form2.informationBefore,
+                        "informationAfter": _this.form2.informationAfter,
+                        "createDate": _this.form2.createDate,
+                    }
+                ).then(resp => {
+                    if (resp && resp.status === 200) {
+                        // _this.search_direct();
+                        _this.$message({type: 'success', message: '添加成功'});
+                    } else {
+                        _this.$message({type: 'error', message: resp.msg});
+                    }
+                    _this.addFormVisible = false;
                 });
             }
         },

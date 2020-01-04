@@ -40,8 +40,6 @@ public class ChangeServiceImpl implements ChangeService {
     @Override
     public boolean addChange(Change change) {
         try {
-            int maxId = changeDao.getMaxEnterpriseInformationChangeId();
-            change.setEnterpriseInformationChangeId(maxId + 1);
             changeDao.addChange(change);
             return true;
         } catch (Exception exception) {
