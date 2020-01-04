@@ -30,6 +30,15 @@ public class ChangeController {
         return changeService.getAllChanges();
     }
 
+    @PostMapping("/add")
+    public ResultCode addChange(Change change) {
+        if (changeService.addChange(change)) {
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.FAILED;
+        }
+    }
+
     @PostMapping("/delete")
     public ResultCode deleteChange(Integer enterpriseInformationChangeId) {
         if(changeService.deleteChange(enterpriseInformationChangeId)) {

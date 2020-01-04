@@ -16,6 +16,13 @@ public interface ChangeDao {
     @Select("select * from enterprise_information_change where enterprise_name like '%${enterpriseName}%' limit 1000")
     List<Change> getChangeByEnterpriseName(@Param("enterpriseName") String enterpriseName);
 
+    @Select("select max(enterprise_information_change_id) from enterprise_information_change")
+    int getMaxEnterpriseInformationChangeId();
+
+    @Insert("insert into enterprise_information_change values (#{enterpriseInformationChangeId}, #{enterpriseId}, #{enterpriseName}, #{informationChangeDate}, #{informationChangeType}, #{informationBefore}, #{informationAfter}, #{createDate})")
+    void addChange(Change change);
+
+
     @Select("select * from enterprise_information_change")
     List<Change> getAllChanges();
 

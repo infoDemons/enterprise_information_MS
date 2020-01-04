@@ -40,6 +40,24 @@ public class TrademarkServiceImpl implements TrademarkService {
     public List<Trademark> getAllTrademarks() { return trademarkDao.getAllTrademarks(); }
 
     @Override
+    public int getMaxTrademarkId() {
+        return trademarkDao.getMaxTrademarkId();
+    }
+
+    @Override
+    public boolean addTrademark(Trademark trademark) {
+        try {
+            int maxId = trademarkDao.getMaxTrademarkId();
+            trademark.setTrademarkId(maxId + 1);
+            trademarkDao.addTrademark(trademark);
+            return true;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public boolean deleteTrademark(Integer trademarkId) {
         try {
             trademarkDao.deleteTrademark(trademarkId);

@@ -41,6 +41,15 @@ public class TrademarkController {
         return trademarkService.getAllTrademarks();
     }
 
+    @PostMapping("/add")
+    public ResultCode addTrademark(Trademark trademark) {
+        if (trademarkService.addTrademark(trademark)) {
+            return ResultCode.SUCCESS;
+        } else {
+            return ResultCode.FAILED;
+        }
+    }
+
     @PostMapping("/delete")
     public ResultCode deleteTrademark(Integer trademarkId) {
         if(trademarkService.deleteTrademark(trademarkId)) {
