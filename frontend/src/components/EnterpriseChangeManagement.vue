@@ -261,7 +261,7 @@
                 ).then(resp => {
                     if (resp && resp.status === 200) {
                         // _this.search_direct();
-                        _this.$message({type: 'success', message: '添加成功'});
+                        // _this.$message({type: 'success', message: '添加成功'});
                     } else {
                         _this.$message({type: 'error', message: resp.msg});
                     }
